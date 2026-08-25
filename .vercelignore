@@ -1,0 +1,14 @@
+# Archivos que viven en el repo pero NO se publican.
+
+# Originales de las fotos (ya están optimizadas y renombradas en assets/)
+uploads/
+
+# Variantes de diseño y vista previa móvil: solo referencia interna
+Run and Bike HN - Mixto.dc.html
+Run & Bike HN.dc.html
+Run and Bike HN - Fondo blanco.dc.html
+Vista movil.dc.html
+
+# Herramientas de desarrollo
+build.mjs
+README.md

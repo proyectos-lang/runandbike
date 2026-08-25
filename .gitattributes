@@ -1,0 +1,18 @@
+# Normaliza los finales de línea a LF dentro del repositorio.
+* text=auto eol=lf
+
+*.html  text eol=lf
+*.js    text eol=lf
+*.mjs   text eol=lf
+*.json  text eol=lf
+*.md    text eol=lf
+*.txt   text eol=lf
+*.xml   text eol=lf
+
+# Binarios: git no debe tocarlos ni intentar diferenciarlos
+*.png   binary
+*.jpg   binary
+*.jpeg  binary
+*.webp  binary
+*.ico   binary
+*.mp4   binary

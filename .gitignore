@@ -1,0 +1,25 @@
+# Vercel
+.vercel/
+
+# Node (por si más adelante se agregan dependencias)
+node_modules/
+npm-debug.log*
+yarn-error.log*
+.env
+.env.local
+
+# Miniatura que genera el editor visual
+.thumbnail
+
+# Windows / macOS
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.DS_Store
+
+# Editores
+.vscode/
+.idea/
+*.swp
+*~
