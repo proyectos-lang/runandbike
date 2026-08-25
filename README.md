@@ -120,8 +120,10 @@ Al conectar el dominio definitivo hay que actualizar la URL en **tres lugares**:
   marca, que desaparece sola al montar la página.
 - Los metadatos de SEO y de redes sociales (Open Graph) están en el HTML estático, así
   que WhatsApp y Facebook muestran la portada correcta aunque no ejecuten JavaScript.
-- `assets/hero.mp4` pesa unos 9.6 MB y el sitio lo descarga completo antes de
-  reproducirlo. Si el hero tarda en aparecer en conexiones lentas, conviene recomprimirlo
-  (720p, ~2–3 MB) antes que tocar el código.
+- `assets/hero-v2.mp4` (4.1 MB, 684 kb/s, H.264 High, sin audio) se transmite
+  progresivamente: el navegador empieza a reproducir con los primeros KB, sin esperar la
+  descarga completa. Mientras tanto se ve `assets/hero-poster.jpg`. El original sin
+  comprimir está en `uploads/`. Si alguna vez se reemplaza el video, hay que **cambiarle
+  el nombre de archivo** (`hero-v3.mp4`, etc.) y actualizar la referencia en el `.dc.html`.
 - Las imágenes de `assets/` se sirven con caché de un año. Si se reemplaza una foto
   conviene cambiarle el nombre de archivo para forzar la actualización.

@@ -619,7 +619,7 @@ class Component extends DCLogic {
   componentDidMount(){
     /* URL directa: el navegador transmite el video progresivamente y arranca con
        los primeros KB. Bajarlo antes como blob obligaba a esperar los 9.6 MB. */
-    this.setState({heroSrc: 'assets/hero.mp4'});
+    this.setState({heroSrc: 'assets/hero-v2.mp4'});
     this.onScroll = () => { const s = window.scrollY > 40; if (s !== this.state.scrolled) this.setState({scrolled:s}); };
     this.onResize = () => this.setState({w:window.innerWidth});
     window.addEventListener('scroll', this.onScroll, {passive:true});
