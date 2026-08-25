@@ -23,7 +23,7 @@ const OUTPUT = 'index.html';
 
 /* Cambiar por el dominio propio cuando esté conectado (ej. https://runandbikehn.com).
    Sin barra final. */
-const SITE_URL = 'https://run-bike-hn.vercel.app';
+const SITE_URL = 'https://runandbike.vercel.app';
 
 const TITLE = 'Run &amp; Bike HN — Eventos de running y ciclismo en Honduras';
 const DESCRIPTION =
