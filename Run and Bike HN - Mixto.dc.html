@@ -273,7 +273,46 @@ a:hover{color:#FFD600}
 </div>
 </section>
 
-<section style="clip-path:polygon(0 2.4vw,100% 0,100% 100%,0 100%);margin-top:-2.4vw;background:#080808;border-top:1px solid rgba(255,255,255,.07);border-bottom:1px solid rgba(255,255,255,.07);padding:clamp(52px,6vw,78px) clamp(18px,4vw,56px)">
+<section id="servicios" style="clip-path:polygon(0 2.4vw,100% 0,100% 100%,0 100%);margin-top:-2.4vw;scroll-margin-top:80px;background:#0d0d0d;padding:clamp(74px,9vw,120px) clamp(18px,4vw,56px);position:relative;overflow:hidden">
+<div style="position:absolute;inset:0;background-image:repeating-linear-gradient(118deg,#111111 0 16px,#0d0d0d 16px 32px);opacity:.9"></div>
+<div style="position:absolute;top:0;right:-10%;width:44%;height:100%;background:linear-gradient(160deg,rgba(227,6,19,.3),rgba(255,61,0,0) 64%);transform:skewX(-13deg)"></div>
+<div style="position:relative;max-width:1320px;margin:0 auto;display:flex;flex-direction:column;gap:clamp(36px,4.5vw,58px)">
+
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:clamp(26px,4vw,60px);align-items:start">
+<div style="display:flex;flex-direction:column;gap:22px">
+<div style="display:flex;align-items:center;gap:12px">
+<span style="width:30px;height:3px;background:#FFD600"></span>
+<span style="font-size:11px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:#FFD600">Qué hacemos</span>
+</div>
+<h2 style="margin:0;font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:clamp(38px,5.4vw,74px);line-height:.9;text-transform:uppercase;text-wrap:balance">Organizadora de<br><span style="background:linear-gradient(96deg,#E30613,#FF3D00 70%,#FFD600);-webkit-background-clip:text;background-clip:text;color:transparent">eventos deportivos</span></h2>
+</div>
+<div style="display:flex;flex-direction:column;gap:18px;padding-top:clamp(0px,1.6vw,26px)">
+<p style="margin:0;font-size:16px;line-height:1.78;color:#E4E4E4">En Run &amp; Bike HN creamos experiencias deportivas que conectan personas, marcas y comunidades a través del running.</p>
+<p style="margin:0;font-size:15px;line-height:1.78;color:#B5B5B5">Nos especializamos en la organización y producción integral de eventos deportivos, desarrollando carreras desde su planificación hasta la ejecución en ruta, cuidando cada detalle para ofrecer experiencias seguras, organizadas y memorables.</p>
+</div>
+</div>
+
+<div>
+<span style="display:block;margin-bottom:20px;font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#FF3D00">Trabajamos en</span>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(258px,1fr));gap:10px">
+<sc-for list="{{ services }}" as="s" hint-placeholder-count="9">
+<div style="background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.1);padding:20px;display:flex;align-items:flex-start;gap:14px;transition:background .25s,border-color .25s" style-hover="background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.22)">
+<span style="flex:none;font-family:'Bebas Neue',sans-serif;font-size:20px;line-height:1.15;background:linear-gradient(120deg,#E30613,#FF3D00);-webkit-background-clip:text;background-clip:text;color:transparent">{{ s.n }}</span>
+<span style="font-size:14.5px;line-height:1.55;color:#E4E4E4">{{ s.label }}</span>
+</div>
+</sc-for>
+</div>
+</div>
+
+<div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:26px;padding:26px clamp(20px,2.6vw,32px);background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-left:3px solid #FFD600">
+<p style="margin:0;max-width:46ch;font-size:15.5px;line-height:1.7;color:#E4E4E4">Nuestra pasión es hacer que cada salida emocione y que cada meta se recuerde.</p>
+<p style="margin:0;font-family:'Bebas Neue',sans-serif;font-size:clamp(19px,2.3vw,27px);line-height:1.25;letter-spacing:.03em;text-transform:uppercase;color:#fff">Organizamos experiencias.<br>Creamos comunidad. <span style="color:#FF3D00">Vivimos el running.</span></p>
+</div>
+
+</div>
+</section>
+
+<section style="background:#080808;border-top:1px solid rgba(255,255,255,.07);border-bottom:1px solid rgba(255,255,255,.07);padding:clamp(52px,6vw,78px) clamp(18px,4vw,56px)">
 <div ref="{{ statsRef }}" style="max-width:1320px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:clamp(24px,3vw,44px)">
 <sc-for list="{{ stats }}" as="s" hint-placeholder-count="4">
 <div style="display:flex;flex-direction:column;gap:8px;border-left:2px solid #E30613;padding-left:20px">
@@ -403,7 +442,7 @@ a:hover{color:#FFD600}
 <div style="max-width:1320px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:clamp(28px,4vw,56px)">
 <div style="display:flex;flex-direction:column;gap:16px;max-width:36ch">
 <img src="assets/logo.png" alt="Run &amp; Bike HN" style="height:52px;width:auto;max-width:100%;object-fit:contain;align-self:flex-start;display:block">
-<p style="margin:0;font-size:13.5px;line-height:1.75;color:#B5B5B5">Organizadora de eventos deportivos</p>
+<p style="margin:0;font-size:13.5px;line-height:1.75;color:#B5B5B5">En dos disciplinas, una misma pasión.</p>
 <span style="font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#B5B5B5">Honduras · C.A.</span>
 </div>
 <div style="display:flex;flex-direction:column;gap:12px">
@@ -543,6 +582,17 @@ const SPONSORS = [
   {name:'Sportia',kind:'tienda deportiva',color:'#141414',logo:'assets/sponsor-sportia.png'},
   {name:'Quartz',kind:'agua purificada',color:'#2E2585',logo:'assets/sponsor-quartz.png'},
   {name:'Running Honduras',kind:'aliado',color:'#1B4CA1',logo:'assets/sponsor-running-hn.png'}
+];
+const SERVICES = [
+  'Organización y producción de carreras',
+  'Planificación logística y operativa',
+  'Diseño y señalización de rutas',
+  'Coordinación de seguridad e hidratación',
+  'Inscripciones y entrega de kits',
+  'Producción de medallas y reconocimientos',
+  'Gestión de patrocinadores y activaciones de marca',
+  'Cobertura y promoción digital',
+  'Experiencias para corredores antes, durante y después del evento'
 ];
 const STATS = [
   {n:48,label:'Eventos realizados',suffix:'+'},
@@ -701,8 +751,9 @@ class Component extends DCLogic {
 
       navLinks: [
         {label:'Inicio',href:'#inicio'},{label:'Eventos',href:'#eventos'},{label:'Experiencia',href:'#experiencia'},
-        {label:'Noticias',href:'#noticias'},{label:'Galería',href:'#galeria'},{label:'Testimonios',href:'#testimonios'},
-        {label:'Preguntas frecuentes',href:'#faq'},{label:'Patrocinadores',href:'#patrocinadores'}
+        {label:'Qué hacemos',href:'#servicios'},{label:'Noticias',href:'#noticias'},{label:'Galería',href:'#galeria'},
+        {label:'Testimonios',href:'#testimonios'},{label:'Preguntas frecuentes',href:'#faq'},
+        {label:'Patrocinadores',href:'#patrocinadores'}
       ],
       socials: [
         {label:'Instagram · @runbikehn',href:'https://www.instagram.com/runbikehn'},{label:'Facebook · Run & Bike HN',href:'https://www.facebook.com/share/1TwWpgaoTZ/'},
@@ -729,6 +780,11 @@ class Component extends DCLogic {
         badgeColor: ev.status==='Próximo' ? '#fff' : '#B5B5B5'
       })),
       eventNames: EVENTS.map(e => e.name),
+
+      services: SERVICES.map((label, i) => ({
+        label,
+        n: String(i + 1).padStart(2, '0')
+      })),
 
       concepts: [
         {n:'01',title:'Deporte',text:'Rutas medidas y cronometraje para quien busca marca propia.',dot:'#E30613',radius:'0'},
