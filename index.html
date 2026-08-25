@@ -617,10 +617,9 @@ class Component extends DCLogic {
   statsRef = React.createRef();
 
   componentDidMount(){
-    fetch('assets/hero.mp4').then(r => r.blob()).then(b => {
-      this._heroUrl = URL.createObjectURL(b);
-      this.setState({heroSrc: this._heroUrl});
-    }).catch(() => this.setState({heroSrc: 'assets/hero.mp4'}));
+    /* URL directa: el navegador transmite el video progresivamente y arranca con
+       los primeros KB. Bajarlo antes como blob obligaba a esperar los 9.6 MB. */
+    this.setState({heroSrc: 'assets/hero.mp4'});
     this.onScroll = () => { const s = window.scrollY > 40; if (s !== this.state.scrolled) this.setState({scrolled:s}); };
     this.onResize = () => this.setState({w:window.innerWidth});
     window.addEventListener('scroll', this.onScroll, {passive:true});
@@ -629,6 +628,9 @@ class Component extends DCLogic {
     this.watchdog = setInterval(() => {
       const v = this._heroEl;
       if (!v || v.readyState === 0) return;
+      /* readyState < 3 significa que todavía está llenando el búfer: es una espera
+         normal, no un cuelgue. Empujarlo aquí provocaría saltos y recargas. */
+      if (v.readyState < 3) return;
       const t = v.currentTime;
       if (this._lastT !== undefined && Math.abs(t - this._lastT) < 0.02 && !v.paused && !v.ended) {
         this._stallCount = (this._stallCount || 0) + 1;
@@ -647,7 +649,6 @@ class Component extends DCLogic {
     } else this.runStats();
   }
   componentWillUnmount(){
-    if (this._heroUrl) URL.revokeObjectURL(this._heroUrl);
     window.removeEventListener('scroll', this.onScroll);
     window.removeEventListener('resize', this.onResize);
     clearInterval(this.watchdog); clearInterval(this.tick); clearInterval(this.auto); clearInterval(this.statTimer);
@@ -670,6 +671,8 @@ class Component extends DCLogic {
       this._heroVideo = React.createElement('video', {
         key: 'hero-video', src: src, autoPlay: true, muted: true, loop: true,
         playsInline: true, preload: 'auto',
+        /* Se ve al instante mientras llegan los primeros KB del video. */
+        poster: 'assets/hero-poster.jpg',
         onPause: e => { const v = e.target; if (!v.ended) v.play().catch(()=>{}); },
         onStalled: e => { e.target.play().catch(()=>{}); },
         ref: el => { this._heroEl = el; if (el) { el.muted = true; el.loop = true; el.play().catch(()=>{}); } },
