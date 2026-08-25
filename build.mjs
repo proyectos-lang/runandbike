@@ -61,8 +61,8 @@ const HEAD = `<head>
 <meta name="twitter:image" content="${SITE_URL}/assets/og-cover.jpg">
 
 <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
-<link rel="icon" href="assets/favicon-v2.png" type="image/png" sizes="512x512">
-<link rel="apple-touch-icon" href="assets/apple-touch-icon-v2.png">
+<link rel="icon" href="assets/favicon-v3.png" type="image/png" sizes="512x512">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon-v3.png">
 
 <link rel="preconnect" href="https://unpkg.com" crossorigin>
 <link rel="preconnect" href="https://fonts.googleapis.com">
