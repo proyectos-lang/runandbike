@@ -264,13 +264,15 @@ a:hover{color:#FFD600}
 </div>
 <h2 style="margin:0;font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:clamp(38px,5.4vw,72px);line-height:.94;text-transform:uppercase">Todos los eventos</h2>
 </div>
-<p style="margin:0;max-width:34ch;font-size:14px;line-height:1.7;color:#B5B5B5">Cuatro fechas confirmadas para lo que resta del año y el archivo de todo lo que ya rodamos juntos.</p>
+<p style="margin:0;max-width:34ch;font-size:14px;line-height:1.7;color:#B5B5B5">Nuestro calendario de carreras. Cada fecha nueva se publica aquí apenas queda confirmada.</p>
 </div>
+<sc-if value="{{ showEventFilters }}" hint-placeholder-val="{{ true }}">
 <div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:32px">
 <sc-for list="{{ eventFilters }}" as="f" hint-placeholder-count="5">
 <button onClick="{{ f.onClick }}" style="padding:11px 20px;border-radius:2px;cursor:pointer;font-family:Montserrat,sans-serif;font-size:11.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;transition:all .22s;background:{{ f.bg }};border:1px solid {{ f.border }};color:{{ f.color }}" style-hover="border-color:#FF3D00;color:#fff">{{ f.label }}</button>
 </sc-for>
 </div>
+</sc-if>
 <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:24px">
 <sc-for list="{{ visibleEvents }}" as="ev" hint-placeholder-count="6">
 <article style="background:#111111;border:1px solid rgba(255,255,255,.08);overflow:hidden;display:flex;flex-direction:column;transition:transform .3s ease,border-color .3s ease,box-shadow .3s ease" style-hover="transform:translateY(-8px);border-color:rgba(227,6,19,.6);box-shadow:0 22px 44px rgba(0,0,0,.55)">
@@ -290,6 +292,9 @@ a:hover{color:#FFD600}
 </article>
 </sc-for>
 </div>
+<sc-if value="{{ noEvents }}" hint-placeholder-val="{{ false }}">
+<p style="margin:0;padding:46px 0;font-size:14px;line-height:1.7;color:#B5B5B5">No hay eventos en esta categoría por ahora. Escribinos por WhatsApp y te avisamos apenas confirmemos la próxima fecha.</p>
+</sc-if>
 </div>
 </section>
 
@@ -594,15 +599,19 @@ Autorizo la publicación de mi testimonio y mi nombre en el sitio de Run &amp; B
 
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;whatsappNumber&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;50489237707&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Contacto&quot;},&quot;countdownTarget&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;2026-08-30T05:00:00-06:00&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Próximo evento&quot;}}">
+/* Eventos de la sección "Todos los eventos".
+   Para agregar uno nuevo, copiá esta línea dentro de la lista y cambiale los datos:
+
+   {name:'Nombre del evento',date:'12 ENE 2027',place:'Ciudad, HN',discipline:'Running',dist:'10K · 5K',status:'Próximo',photo:'[ foto del evento ]'},
+
+   discipline: 'Running', 'Ciclismo' o 'Ambas'   ·   status: 'Próximo' o 'Finalizado'
+   photo: texto que se ve mientras no haya imagen
+   src:   ruta del afiche (ej. 'assets/afiche-21k.jpeg'); si se pone, reemplaza a photo
+
+   Los filtros (Running / Ciclismo / Próximos / Finalizados) aparecen solos
+   en cuanto haya más de un evento en la lista. */
 const EVENTS = [
-  {name:'21K Renovart Platinum',date:'30 AGO 2026',place:'San Pedro Sula, HN',discipline:'Running',dist:'21K · 10K · 5K · L 450',status:'Próximo',photo:'',src:'assets/afiche-21k.jpeg'},
-  {name:'Nocturna Tegucigalpa',date:'18 OCT 2026',place:'Tegucigalpa, HN',discipline:'Running',dist:'5K · 10K',status:'Próximo',photo:'[ foto carrera nocturna ]'},
-  {name:'Gran Fondo Comayagua',date:'15 NOV 2026',place:'Comayagua, HN',discipline:'Ciclismo',dist:'60K · 100K',status:'Próximo',photo:'[ foto gran fondo ]'},
-  {name:'Trail Cerro Uyuca',date:'06 DIC 2026',place:'Valle de Ángeles, HN',discipline:'Running',dist:'12K · 21K trail',status:'Próximo',photo:'[ foto trail montaña ]'},
-  {name:'Duatlón Lago de Yojoa',date:'22 JUN 2026',place:'Lago de Yojoa, HN',discipline:'Ambas',dist:'5K run + 30K bike + 2.5K run',status:'Finalizado',photo:'[ foto duatlón yojoa ]'},
-  {name:'Media Maratón SPS',date:'03 MAY 2026',place:'San Pedro Sula, HN',discipline:'Running',dist:'10K · 21K',status:'Finalizado',photo:'[ foto media maratón ]'},
-  {name:'Vuelta a Copán',date:'15 MAR 2026',place:'Copán Ruinas, HN',discipline:'Ciclismo',dist:'55K · 90K',status:'Finalizado',photo:'[ foto vuelta a copán ]'},
-  {name:'Carrera de la Amistad',date:'08 FEB 2026',place:'La Ceiba, HN',discipline:'Running',dist:'3K · 5K familiar',status:'Finalizado',photo:'[ foto carrera familiar ]'}
+  {name:'21K Renovart Platinum',date:'30 AGO 2026',place:'San Pedro Sula, HN',discipline:'Running',dist:'21K · 10K · 5K · L 450',status:'Próximo',photo:'',src:'assets/afiche-21k.jpeg'}
 ];
 const GALLERY = [
   {title:'Medallas del 10K',event:'Challenge Utila',photo:'',src:'assets/galeria-01.jpeg',cs:2,rs:2},
@@ -834,6 +843,8 @@ class Component extends DCLogic {
         badgeColor: ev.status==='Próximo' ? '#fff' : '#B5B5B5'
       })),
       eventNames: EVENTS.map(e => e.name),
+      showEventFilters: EVENTS.length > 1,
+      noEvents: EVENTS.filter(matches).length === 0,
 
       services: SERVICES.map((label, i) => ({
         label,
