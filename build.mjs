@@ -27,9 +27,9 @@ const SITE_URL = 'https://runandbike.vercel.app';
 
 const TITLE = 'Run &amp; Bike HN — Eventos de running y ciclismo en Honduras';
 const DESCRIPTION =
-  'Run &amp; Bike HN organiza eventos de running y ciclismo en Honduras. Dos disciplinas, una misma pasión.';
+  'Run &amp; Bike HN es organizadora de eventos deportivos en Honduras. Planificamos, producimos y ejecutamos carreras de running y ciclismo.';
 const SOCIAL_DESCRIPTION =
-  'Dos disciplinas, una misma pasión. Running, ciclismo, aventura y comunidad en cada recorrido.';
+  'Planificamos, producimos y ejecutamos carreras de running y ciclismo en toda Honduras.';
 
 const HEAD = `<head>
 <meta charset="utf-8">
@@ -49,7 +49,7 @@ const HEAD = `<head>
 <meta property="og:title" content="${TITLE}">
 <meta property="og:description" content="${SOCIAL_DESCRIPTION}">
 <meta property="og:url" content="${SITE_URL}/">
-<meta property="og:image" content="${SITE_URL}/assets/og-cover.jpg">
+<meta property="og:image" content="${SITE_URL}/assets/og-cover-v2.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Run &amp; Bike HN — eventos de running y ciclismo en Honduras">
@@ -58,7 +58,7 @@ const HEAD = `<head>
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="${TITLE}">
 <meta name="twitter:description" content="${SOCIAL_DESCRIPTION}">
-<meta name="twitter:image" content="${SITE_URL}/assets/og-cover.jpg">
+<meta name="twitter:image" content="${SITE_URL}/assets/og-cover-v2.jpg">
 
 <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
 <link rel="icon" href="assets/favicon-v4.png" type="image/png" sizes="512x512">
