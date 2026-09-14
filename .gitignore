@@ -3,6 +3,12 @@
 
 # Node (por si más adelante se agregan dependencias)
 node_modules/
+
+# Herramienta de la portada social: librería, tipografías y borradores.
+# Nada de esto se sube; se regenera con portada-social.mjs.
+.herramientas/
+.fuentes/
+og-cover-nueva.jpg
 npm-debug.log*
 yarn-error.log*
 .env

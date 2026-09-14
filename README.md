@@ -13,6 +13,7 @@ de compilación en el despliegue. Vercel solo sirve los archivos tal cual.
 | `index.html` | **La página publicada.** Se genera con `node build.mjs`; no editar a mano. |
 | `Run and Bike HN - Mixto.dc.html` | **Fuente editable.** Es el archivo que abre el editor visual. |
 | `build.mjs` | Toma la fuente, le injerta el `<head>` de producción y escribe `index.html`. |
+| `portada-social.mjs` | Genera la imagen que se ve al compartir el enlace. Ver más abajo. |
 | `support.js` | Runtime que interpreta las plantillas `.dc.html` en el navegador. |
 | `assets/` | Imágenes, video del hero, logos de patrocinadores, favicon y portada social. |
 | `uploads/` | Originales sin procesar de las fotos. Se guardan pero no se publican. |
@@ -49,6 +50,36 @@ La fecha de la cuenta regresiva sale de `NEXT_EVENT.when`, no de un valor aparte
 ```bash
 node build.mjs
 ```
+
+---
+
+## La portada que se ve al compartir el enlace
+
+Cuando alguien manda el enlace por WhatsApp o Facebook, la imagen que aparece
+no es la página: es `assets/og-cover-v2.jpg`, una imagen aparte de 1200x630
+declarada en `build.mjs` como `og:image`.
+
+Para hacer una nueva:
+
+```bash
+npm install --prefix .herramientas @napi-rs/canvas   # una sola vez
+node portada-social.mjs
+```
+
+Eso deja `og-cover-nueva.jpg` en la raíz para revisar. El archivo empieza con
+las instrucciones completas y las opciones (`--titular`, `--sin-titular`,
+`--foto`).
+
+**Al publicarla hay que cambiarle el nombre** (`og-cover-v3.jpg`, v4, etc.) y
+actualizar las dos menciones a `og-cover` en `build.mjs`. Las imágenes de
+`assets/` se sirven con caché de un año e `immutable`: si se reemplaza el
+archivo sin cambiarle el nombre, nadie ve la portada nueva.
+
+WhatsApp además guarda su propio caché del preview de cada enlace. Para
+comprobar el cambio, compartí la URL con algo pegado al final
+(`runandbike.vercel.app/?2`) o forzala desde el
+[depurador de Facebook](https://developers.facebook.com/tools/debug/) con
+**Scrape Again**.
 
 ---
 
