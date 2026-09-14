@@ -28,6 +28,9 @@ de compilación en el despliegue. Vercel solo sirve los archivos tal cual.
 Casi todo el texto del sitio vive en un bloque de JavaScript al final de
 `Run and Bike HN - Mixto.dc.html`, en listas fáciles de tocar:
 
+- `NEXT_EVENT` — evento destacado: mueve el bloque del hero con la cuenta regresiva,
+  la sección "El próximo desafío" y la columna del pie. En `null` los tres quedan
+  en modo "por anunciar". El comentario que está arriba trae la plantilla para llenarlo.
 - `EVENTS` — calendario de eventos (nombre, fecha, lugar, disciplina, distancias, estado)
 - `GALLERY` — galería de fotos
 - `TESTIMONIALS` — testimonios de participantes
@@ -35,11 +38,11 @@ Casi todo el texto del sitio vive en un bloque de JavaScript al final de
 - `SPONSORS` — patrocinadores
 - `STATS` — cifras del contador animado
 
-También hay dos valores configurables en el atributo `data-props` de ese mismo bloque:
+También hay un valor configurable en el atributo `data-props` de ese mismo bloque:
 
-- `whatsappNumber` — actualmente `50489237707`
-- `countdownTarget` — fecha del próximo evento para la cuenta regresiva,
-  hoy `2026-08-30T05:00:00-06:00` (21K Renovart Platinum)
+- `whatsappNumber` — actualmente `50489984039`
+
+La fecha de la cuenta regresiva sale de `NEXT_EVENT.when`, no de un valor aparte.
 
 **Después de cualquier edición hay que regenerar la página publicada:**
 

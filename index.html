@@ -59,7 +59,7 @@
 <img class="rb-logo" src="assets/logo-splash.png" alt="Run &amp; Bike HN" width="640" height="254" fetchpriority="high" decoding="async">
 </picture>
 <div class="rb-bar"><span></span></div>
-<noscript><p id="rb-noscript">Este sitio necesita JavaScript activado para mostrarse. Activalo en tu navegador y recargá la página. También podés escribirnos por WhatsApp al <a href="https://wa.me/50489237707">+504 8923-7707</a>.</p></noscript>
+<noscript><p id="rb-noscript">Este sitio necesita JavaScript activado para mostrarse. Activalo en tu navegador y recargá la página. También podés escribirnos por WhatsApp al <a href="https://wa.me/50489984039">+504 8998-4039</a>.</p></noscript>
 </div>
 <x-dc>
 <helmet data-dc-atomics><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet"><style>
@@ -129,9 +129,10 @@ a:hover{color:#FFD600}
 <div style="margin-top:8px;box-sizing:border-box;display:flex;flex-wrap:wrap;align-items:center;gap:clamp(16px,3vw,40px);padding:22px clamp(18px,2.4vw,28px);background:rgba(17,17,17,.78);border:1px solid rgba(255,255,255,.1);border-left:3px solid #E30613;backdrop-filter:blur(10px);animation:rbRise .8s .32s ease both">
 <div style="display:flex;flex-direction:column;gap:6px;min-width:190px">
 <span style="font-size:10px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:#FF3D00">Próximo evento</span>
-<strong style="font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:26px;letter-spacing:.02em;line-height:1.05">21K Renovart Platinum</strong>
-<span style="font-size:12.5px;color:#B5B5B5">30 AGO · San Pedro Sula, HN</span>
+<strong style="font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:26px;letter-spacing:.02em;line-height:1.05">{{ nextName }}</strong>
+<span style="font-size:12.5px;color:#B5B5B5">{{ nextShort }}</span>
 </div>
+<sc-if value="{{ hasNextEvent }}" hint-placeholder-val="{{ true }}">
 <div style="display:flex;flex-wrap:wrap;gap:8px">
 <sc-for list="{{ countdown }}" as="unit" hint-placeholder-count="4">
 <div style="box-sizing:border-box;min-width:clamp(56px,16vw,66px);padding:11px 8px;text-align:center;background:#080808;border:1px solid rgba(255,255,255,.1)">
@@ -140,6 +141,7 @@ a:hover{color:#FFD600}
 </div>
 </sc-for>
 </div>
+</sc-if>
 </div>
 </div>
 </section>
@@ -147,17 +149,21 @@ a:hover{color:#FFD600}
 <section id="proximo" style="clip-path:polygon(0 0,100% 2.4vw,100% 100%,0 100%);margin-top:-2.4vw;color:#141414;scroll-margin-top:80px;background:#F6F4F1;padding:clamp(70px,9vw,120px) clamp(18px,4vw,56px)">
 <div style="max-width:1320px;margin:0 auto;display:flex;flex-wrap:wrap;gap:clamp(28px,4vw,60px);align-items:flex-start">
 <div style="flex:1 1 300px;max-width:400px;display:flex;flex-direction:column;gap:20px">
+<sc-if value="{{ hasNextEvent }}" hint-placeholder-val="{{ true }}">
 <div style="position:relative;aspect-ratio:4/5;background-image:repeating-linear-gradient(118deg,#E7E3DC 0 12px,#F1EEEA 12px 24px);border:1px solid rgba(0,0,0,.09);display:flex;align-items:center;justify-content:center;overflow:hidden">
-<img src="assets/afiche-21k.jpeg" alt="21K Renovart Platinum — San Pedro Sula" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block">
-<span style="position:absolute;top:16px;left:16px;padding:7px 12px;background:#E30613;color:#fff;font-size:10px;font-weight:800;letter-spacing:.16em;text-transform:uppercase">Últimos 50 cupos</span>
+<img src="{{ nextPoster }}" alt="{{ nextName }}" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block">
+<sc-if value="{{ nextBadge }}" hint-placeholder-val="{{ true }}">
+<span style="position:absolute;top:16px;left:16px;padding:7px 12px;background:#E30613;color:#fff;font-size:10px;font-weight:800;letter-spacing:.16em;text-transform:uppercase">{{ nextBadge }}</span>
+</sc-if>
 </div>
+</sc-if>
 <div style="padding:18px 20px;background:#EDEAE4;border-left:3px solid #E8A400">
 <div style="font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#C1050F;margin-bottom:8px">Requisitos de participación</div>
-<p style="margin:0;font-size:13.5px;line-height:1.7;color:#595959">Mayores de 16 años (menores con autorización firmada del tutor). Número visible al frente e hidratación personal recomendada. Retiro de kit con documento de identidad. Para el 21K sugerimos evaluación médica previa.</p>
+<p style="margin:0;font-size:13.5px;line-height:1.7;color:#595959">Mayores de 16 años (menores con autorización firmada del tutor). Número visible al frente e hidratación personal recomendada. Retiro de kit con documento de identidad. Para las distancias largas sugerimos evaluación médica previa.</p>
 </div>
 <div style="display:flex;flex-wrap:wrap;gap:13px">
-<a href="{{ waEventLink }}" target="_blank" rel="noopener" style="padding:17px 30px;border-radius:2px;background:linear-gradient(100deg,#E30613,#FF3D00);color:#fff;font-size:12.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;transition:transform .2s,box-shadow .2s" style-hover="transform:translateY(-3px);box-shadow:0 14px 34px rgba(227,6,19,.45);color:#fff">Quiero participar</a>
-<a href="#eventos" style="padding:17px 30px;border-radius:2px;border:1px solid rgba(0,0,0,.28);color:#141414;font-size:12.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;transition:border-color .2s,color .2s" style-hover="border-color:#C1050F;color:#C1050F">Ver detalles</a>
+<a href="{{ waEventLink }}" target="_blank" rel="noopener" style="padding:17px 30px;border-radius:2px;background:linear-gradient(100deg,#E30613,#FF3D00);color:#fff;font-size:12.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;transition:transform .2s,box-shadow .2s" style-hover="transform:translateY(-3px);box-shadow:0 14px 34px rgba(227,6,19,.45);color:#fff">{{ nextCtaLabel }}</a>
+<a href="#eventos" style="padding:17px 30px;border-radius:2px;border:1px solid rgba(0,0,0,.28);color:#141414;font-size:12.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;transition:border-color .2s,color .2s" style-hover="border-color:#C1050F;color:#C1050F">Ver el calendario</a>
 </div>
 </div>
 <div style="flex:1 1 440px;min-width:0;display:flex;flex-direction:column;gap:26px">
@@ -165,7 +171,8 @@ a:hover{color:#FFD600}
 <span style="width:30px;height:3px;background:#E30613"></span>
 <span style="font-size:11px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:#B3210A">El próximo desafío</span>
 </div>
-<h2 style="margin:0;font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:clamp(40px,5.6vw,76px);line-height:.92;letter-spacing:.01em;text-transform:uppercase">21K Renovart <span style="color:#C1050F">Platinum</span></h2>
+<h2 style="margin:0;font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:clamp(40px,5.6vw,76px);line-height:.92;letter-spacing:.01em;text-transform:uppercase">{{ nextTitle }} <span style="color:#C1050F">{{ nextTitleAccent }}</span></h2>
+<sc-if value="{{ hasNextEvent }}" hint-placeholder-val="{{ true }}">
 <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:rgba(0,0,0,.09);border:1px solid rgba(0,0,0,.09)">
 <sc-for list="{{ eventMeta }}" as="m" hint-placeholder-count="4">
 <div style="background:#F6F4F1;padding:16px 18px">
@@ -174,8 +181,10 @@ a:hover{color:#FFD600}
 </div>
 </sc-for>
 </div>
-<p style="margin:0;font-size:15.5px;line-height:1.75;color:#595959">Media maratón nocturna-madrugada por las principales avenidas de San Pedro Sula. Ruta cerrada y señalizada, hidratación cada 2.5 km, ambulancia y motorizados en todo el trayecto. Quedan los últimos 50 cupos.</p>
+</sc-if>
+<p style="margin:0;font-size:15.5px;line-height:1.75;color:#595959">{{ nextDescription }}</p>
 <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:22px">
+<sc-if value="{{ hasNextEvent }}" hint-placeholder-val="{{ true }}">
 <div>
 <div style="font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#B3210A;margin-bottom:10px">Distancias</div>
 <div style="display:flex;flex-wrap:wrap;gap:8px">
@@ -184,6 +193,7 @@ a:hover{color:#FFD600}
 </sc-for>
 </div>
 </div>
+</sc-if>
 <div>
 <div style="font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#B3210A;margin-bottom:10px">Categorías</div>
 <ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:7px">
@@ -218,12 +228,6 @@ a:hover{color:#FFD600}
 <h3 style="margin:0;font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:28px;line-height:1.02;text-transform:uppercase">Corredores Legendarios</h3>
 <p style="margin:0;font-size:13.5px;line-height:1.7;color:#B5B5B5">Abrimos categoría para corredores de 60 años en adelante con inscripción totalmente gratis en nuestros eventos. Incluye número, medalla y kit de participación.</p>
 </div>
-</article>
-<article style="background:#181818;border:1px solid rgba(255,255,255,.08);padding:26px;display:flex;flex-direction:column;gap:12px;transition:transform .3s ease,border-color .3s ease" style-hover="transform:translateY(-6px);border-color:rgba(227,6,19,.55)">
-<span style="font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#FF3D00">Cupos</span>
-<h3 style="margin:0;font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:26px;line-height:1.05;text-transform:uppercase">Últimos 50 cupos del 21K Renovart Platinum</h3>
-<p style="margin:0;font-size:13.5px;line-height:1.7;color:#B5B5B5">Domingo 30 de agosto, 5:00 a.m. en San Pedro Sula. Inscripción L 450 e incluye kit, hidratación y medalla finisher.</p>
-<a href="{{ waEventLink }}" target="_blank" rel="noopener" style="margin-top:6px;font-size:11.5px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#fff;display:inline-flex;align-items:center;gap:9px;transition:gap .2s,color .2s" style-hover="gap:16px;color:#FFD600">Quiero mi cupo <span style="width:22px;height:2px;background:#E30613;display:inline-block"></span></a>
 </article>
 <article style="background:#181818;border:1px solid rgba(255,255,255,.08);padding:26px;display:flex;flex-direction:column;gap:12px;transition:transform .3s ease,border-color .3s ease" style-hover="transform:translateY(-6px);border-color:rgba(227,6,19,.55)">
 <span style="font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#FF3D00">Convocatoria</span>
@@ -518,9 +522,9 @@ a:hover{color:#FFD600}
 </div>
 <div style="display:flex;flex-direction:column;gap:14px">
 <span style="font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#FF3D00">Próximo evento</span>
-<strong style="font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:24px;letter-spacing:.02em">21K Renovart Platinum</strong>
-<span style="font-size:13px;color:#B5B5B5">30 de agosto · 5:00 a.m. · San Pedro Sula</span>
-<a href="{{ waEventLink }}" target="_blank" rel="noopener" style="align-self:flex-start;padding:13px 20px;background:linear-gradient(100deg,#E30613,#FF3D00);color:#fff;font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase" style-hover="color:#fff">Quiero participar</a>
+<strong style="font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:24px;letter-spacing:.02em">{{ nextName }}</strong>
+<span style="font-size:13px;color:#B5B5B5">{{ nextFooterLine }}</span>
+<a href="{{ waEventLink }}" target="_blank" rel="noopener" style="align-self:flex-start;padding:13px 20px;background:linear-gradient(100deg,#E30613,#FF3D00);color:#fff;font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase" style-hover="color:#fff">{{ nextCtaLabel }}</a>
 </div>
 </div>
 <div style="max-width:1320px;margin:44px auto 0;padding-top:22px;border-top:1px solid rgba(255,255,255,.07);display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;font-size:11.5px;color:#B5B5B5">
@@ -598,7 +602,7 @@ Autorizo la publicación de mi testimonio y mi nombre en el sitio de Run &amp; B
 </sc-if>
 
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;whatsappNumber&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;50489237707&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Contacto&quot;},&quot;countdownTarget&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;2026-08-30T05:00:00-06:00&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Próximo evento&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;whatsappNumber&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;50489984039&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Contacto&quot;}}">
 /* Eventos de la sección "Todos los eventos".
    Para agregar uno nuevo, copiá esta línea dentro de la lista y cambiale los datos:
 
@@ -611,8 +615,36 @@ Autorizo la publicación de mi testimonio y mi nombre en el sitio de Run &amp; B
    Los filtros (Running / Ciclismo / Próximos / Finalizados) aparecen solos
    en cuanto haya más de un evento en la lista. */
 const EVENTS = [
-  {name:'21K Renovart Platinum',date:'30 AGO 2026',place:'San Pedro Sula, HN',discipline:'Running',dist:'21K · 10K · 5K · L 450',status:'Próximo',photo:'',src:'assets/afiche-21k.jpeg'}
 ];
+
+/* Evento destacado: alimenta el bloque del hero con la cuenta regresiva, la
+   sección "El próximo desafío" y la columna del pie de página.
+
+   Mientras esté en null, esos tres bloques quedan en modo "por anunciar": se
+   ocultan el afiche, la cuenta regresiva, la ficha de datos y las distancias,
+   y el resto invita a escribir por WhatsApp.
+
+   Cuando confirmen la próxima carrera, reemplazá el null por un objeto así
+   (y agregala también a EVENTS para que salga en el calendario):
+
+   const NEXT_EVENT = {
+     name:       '21K Renovart Platinum',
+     accent:     'Platinum',                    // final del nombre que va en rojo en el título grande
+     when:       '2026-08-30T05:00:00-06:00',   // fecha y hora de salida: mueve la cuenta regresiva
+     short:      '30 AGO · San Pedro Sula, HN', // línea corta del hero
+     footerLine: '30 de agosto · 5:00 a.m. · San Pedro Sula',
+     poster:     'assets/afiche-21k.jpeg',
+     badge:      'Últimos 50 cupos',            // sello sobre el afiche; '' lo deja sin sello
+     meta: [
+       {k:'Fecha',v:'Domingo 30 de agosto'},{k:'Hora de salida',v:'5:00 a.m.'},
+       {k:'Ubicación',v:'San Pedro Sula, Honduras'},{k:'Inscripción',v:'L 450'}
+     ],
+     description:'Media maratón nocturna-madrugada por las principales avenidas de San Pedro Sula...',
+     distances:  ['21K','10K','5K'],
+     wa:         'Hola Run & Bike HN, quiero participar en el 21K Renovart Platinum. ¿Me envían la información de inscripción?'
+   };
+*/
+const NEXT_EVENT = null;
 const GALLERY = [
   {title:'Medallas del 10K',event:'Challenge Utila',photo:'',src:'assets/galeria-01.jpeg',cs:2,rs:2},
   {title:'Arco de meta',event:'Challenge Utila',photo:'',src:'assets/galeria-03.jpeg',cs:1,rs:1},
@@ -670,7 +702,7 @@ class Component extends DCLogic {
     eventFilter:'Todos', galFilter:'Todos',
     lightbox:null, tIndex:0, faqOpen:0,
     modalOpen:false, formSent:false,
-    form:{nombre:'',correo:'',evento:'21K Renovart Platinum',disciplina:'Running',testimonio:'',ok:true},
+    form:{nombre:'',correo:'',evento:(EVENTS[0] && EVENTS[0].name) || 'Otro evento',disciplina:'Running',testimonio:'',ok:true},
     now:Date.now(), statVals:[0,0,0,0]
   };
   statsRef = React.createRef();
@@ -774,10 +806,15 @@ class Component extends DCLogic {
     const st = this.state;
     const scrolled = st.scrolled;
     const isMobile = st.w < 1024;
-    const wa = (this.props.whatsappNumber || '50489237707').replace(/[^0-9]/g,'');
+    const wa = (this.props.whatsappNumber || '50489984039').replace(/[^0-9]/g,'');
     const link = t => 'https://wa.me/' + wa + '?text=' + encodeURIComponent(t);
 
-    const target = new Date(this.props.countdownTarget || '2026-08-30T05:00:00-06:00').getTime();
+    const neName = NEXT_EVENT ? NEXT_EVENT.name : '';
+    const neAccent = NEXT_EVENT && NEXT_EVENT.accent ? NEXT_EVENT.accent : '';
+    const neTitle = neAccent && neName.slice(-neAccent.length) === neAccent
+      ? neName.slice(0, -neAccent.length).trim() : neName;
+
+    const target = NEXT_EVENT && NEXT_EVENT.when ? new Date(NEXT_EVENT.when).getTime() : 0;
     let diff = Math.max(0, target - st.now);
     const d = Math.floor(diff/86400000), h = Math.floor(diff/3600000)%24, mi = Math.floor(diff/60000)%60, se = Math.floor(diff/1000)%60;
     const pad = n => String(n).padStart(2,'0');
@@ -824,15 +861,24 @@ class Component extends DCLogic {
         {label:'hola@runbikehn.com',href:'mailto:hola@runbikehn.com'}
       ],
       waGeneralLink: link('Hola Run & Bike HN, quiero información sobre los próximos eventos.'),
-      waEventLink: link('Hola Run & Bike HN, quiero participar en el 21K Renovart Platinum del 30 de agosto. ¿Me envían la información de inscripción?'),
+      waEventLink: link(NEXT_EVENT && NEXT_EVENT.wa ? NEXT_EVENT.wa
+        : 'Hola Run & Bike HN, quiero que me avisen cuando confirmen la próxima carrera.'),
 
       heroVideo: this.heroVideo(),
+      hasNextEvent: !!NEXT_EVENT,
+      nextName: NEXT_EVENT ? neName : 'Por anunciar',
+      nextShort: NEXT_EVENT ? NEXT_EVENT.short : 'Te avisamos apenas se confirme',
+      nextFooterLine: NEXT_EVENT ? NEXT_EVENT.footerLine : 'Te avisamos apenas confirmemos la fecha.',
+      nextPoster: NEXT_EVENT ? NEXT_EVENT.poster : '',
+      nextBadge: NEXT_EVENT ? NEXT_EVENT.badge : '',
+      nextTitle: NEXT_EVENT ? neTitle : 'Próxima fecha',
+      nextTitleAccent: NEXT_EVENT ? neAccent : 'por anunciar',
+      nextDescription: NEXT_EVENT ? NEXT_EVENT.description
+        : 'Estamos cerrando el calendario de las próximas carreras. Escribinos por WhatsApp y te avisamos apenas confirmemos fecha, ruta y distancias.',
+      nextCtaLabel: NEXT_EVENT ? 'Quiero participar' : 'Avisame de la próxima',
       countdown: [{v:pad(d),l:'Días'},{v:pad(h),l:'Horas'},{v:pad(mi),l:'Min'},{v:pad(se),l:'Seg'}],
-      eventMeta: [
-        {k:'Fecha',v:'Domingo 30 de agosto'},{k:'Hora de salida',v:'5:00 a.m.'},
-        {k:'Ubicación',v:'San Pedro Sula, Honduras'},{k:'Inscripción',v:'L 450'}
-      ],
-      distances: ['21K','10K','5K'],
+      eventMeta: NEXT_EVENT ? NEXT_EVENT.meta : [],
+      distances: NEXT_EVENT ? NEXT_EVENT.distances : [],
       categories: ['Juvenil 16–19','Libre 20–39','Master A 40–49','Master B 50+','Corredores Legendarios 60+ · inscripción gratis','Rama femenina y masculina'],
 
       eventFilters: mkFilters(['Todos','Running','Ciclismo','Próximos','Finalizados'], eventFilter, l => ({eventFilter:l})),
@@ -842,7 +888,7 @@ class Component extends DCLogic {
         badgeBg: ev.status==='Próximo' ? '#E30613' : 'rgba(8,8,8,.78)',
         badgeColor: ev.status==='Próximo' ? '#fff' : '#B5B5B5'
       })),
-      eventNames: EVENTS.map(e => e.name),
+      eventNames: EVENTS.map(e => e.name).concat('Otro evento'),
       showEventFilters: EVENTS.length > 1,
       noEvents: EVENTS.filter(matches).length === 0,
 

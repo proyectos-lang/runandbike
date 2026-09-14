@@ -90,7 +90,7 @@ const SPLASH = `
 <img class="rb-logo" src="assets/logo-splash.png" alt="Run &amp; Bike HN" width="640" height="254" fetchpriority="high" decoding="async">
 </picture>
 <div class="rb-bar"><span></span></div>
-<noscript><p id="rb-noscript">Este sitio necesita JavaScript activado para mostrarse. Activalo en tu navegador y recargá la página. También podés escribirnos por WhatsApp al <a href="https://wa.me/50489237707">+504 8923-7707</a>.</p></noscript>
+<noscript><p id="rb-noscript">Este sitio necesita JavaScript activado para mostrarse. Activalo en tu navegador y recargá la página. También podés escribirnos por WhatsApp al <a href="https://wa.me/50489984039">+504 8998-4039</a>.</p></noscript>
 </div>
 `;
 
