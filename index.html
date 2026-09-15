@@ -159,11 +159,17 @@ a:hover{color:#FFD600}
 </sc-if>
 <div style="padding:18px 20px;background:#EDEAE4;border-left:3px solid #E8A400">
 <div style="font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#C1050F;margin-bottom:8px">Requisitos de participación</div>
-<p style="margin:0;font-size:13.5px;line-height:1.7;color:#595959">Mayores de 16 años (menores con autorización firmada del tutor). Número visible al frente e hidratación personal recomendada. Retiro de kit con documento de identidad. Para las distancias largas sugerimos evaluación médica previa.</p>
+<ul style="margin:0;padding-left:17px;display:flex;flex-direction:column;gap:7px">
+<li style="font-size:13.5px;line-height:1.6;color:#595959">Participantes mayores de 16 años.</li>
+<li style="font-size:13.5px;line-height:1.6;color:#595959">Los menores deberán presentar autorización firmada por su padre, madre o tutor.</li>
+<li style="font-size:13.5px;line-height:1.6;color:#595959">El número de competencia deberá portarse visible durante todo el recorrido.</li>
+<li style="font-size:13.5px;line-height:1.6;color:#595959">Para retirar el kit será necesario presentar documento de identidad.</li>
+<li style="font-size:13.5px;line-height:1.6;color:#595959">Recomendamos mantenerse correctamente hidratado y, para distancias de mayor exigencia, realizar una evaluación médica previa.</li>
+</ul>
 </div>
 <div style="display:flex;flex-wrap:wrap;gap:13px">
 <a href="{{ waEventLink }}" target="_blank" rel="noopener" style="padding:17px 30px;border-radius:2px;background:linear-gradient(100deg,#E30613,#FF3D00);color:#fff;font-size:12.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;transition:transform .2s,box-shadow .2s" style-hover="transform:translateY(-3px);box-shadow:0 14px 34px rgba(227,6,19,.45);color:#fff">{{ nextCtaLabel }}</a>
-<a href="#eventos" style="padding:17px 30px;border-radius:2px;border:1px solid rgba(0,0,0,.28);color:#141414;font-size:12.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;transition:border-color .2s,color .2s" style-hover="border-color:#C1050F;color:#C1050F">Ver el calendario</a>
+<a href="#eventos" style="padding:17px 30px;border-radius:2px;border:1px solid rgba(0,0,0,.28);color:#141414;font-size:12.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;transition:border-color .2s,color .2s" style-hover="border-color:#C1050F;color:#C1050F">Ver próximos eventos</a>
 </div>
 </div>
 <div style="flex:1 1 440px;min-width:0;display:flex;flex-direction:column;gap:26px">
@@ -479,7 +485,7 @@ a:hover{color:#FFD600}
 <span style="flex:none;width:26px;height:26px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(0,0,0,.18);font-size:15px;color:#B3210A;transition:transform .3s;transform:{{ f.iconRot }}">+</span>
 </button>
 <sc-if value="{{ f.open }}" hint-placeholder-val="{{ false }}">
-<p style="margin:0;padding:0 44px 24px 4px;font-size:14px;line-height:1.75;color:#595959;animation:rbRise .3s ease both">{{ f.a }}</p>
+<p style="margin:0;padding:0 44px 24px 4px;font-size:14px;line-height:1.75;color:#595959;white-space:pre-line;animation:rbRise .3s ease both">{{ f.a }}</p>
 </sc-if>
 </div>
 </sc-for>
@@ -669,7 +675,7 @@ const FAQS = [
   {q:'¿Qué equipo necesito llevar?',a:'Para running: calzado deportivo, hidratación personal y el número visible al frente. Para ciclismo: casco obligatorio, bicicleta revisada, luces y kit básico de reparación.'},
   {q:'¿Qué medidas de seguridad tienen los eventos?',a:'Contamos con ambulancia, personal de primeros auxilios, motorizados de acompañamiento y coordinación previa con la policía municipal de cada zona. En rutas de montaña sumamos vehículo de barrido.'},
   {q:'¿Cuándo y dónde se entregan los kits?',a:'La entrega de kits se hace el día antes del evento en un punto céntrico de la ciudad anfitriona, presentando documento de identidad. También habrá entrega limitada el mismo día, dos horas antes de la salida.'},
-  {q:'¿Cuáles son los requisitos de participación?',a:'Ser mayor de 16 años o presentar autorización firmada de un tutor, estar en condiciones físicas adecuadas y aceptar el reglamento del evento. Recomendamos una evaluación médica previa para las distancias largas.'}
+  {q:'¿Cuáles son los requisitos de participación?',a:'• Participantes mayores de 16 años.\n• Los menores deberán presentar autorización firmada por su padre, madre o tutor.\n• El número de competencia deberá portarse visible durante todo el recorrido.\n• Para retirar el kit será necesario presentar documento de identidad.\n• Recomendamos mantenerse correctamente hidratado y, para distancias de mayor exigencia, realizar una evaluación médica previa.'}
 ];
 const SPONSORS = [
   {name:'Renovart Platinum',kind:'patrocinador',color:'#1F4E9C',logo:'assets/sponsor-renovart.png'},
@@ -874,7 +880,7 @@ class Component extends DCLogic {
       nextTitleAccent: NEXT_EVENT ? neAccent : 'por anunciar',
       nextDescription: NEXT_EVENT ? NEXT_EVENT.description
         : 'Estamos cerrando el calendario de las próximas carreras. Escribinos por WhatsApp y te avisamos apenas confirmemos fecha, ruta y distancias.',
-      nextCtaLabel: NEXT_EVENT ? 'Quiero participar' : 'Avisame de la próxima',
+      nextCtaLabel: NEXT_EVENT ? 'Quiero participar' : 'Quiero recibir información',
       countdown: [{v:pad(d),l:'Días'},{v:pad(h),l:'Horas'},{v:pad(mi),l:'Min'},{v:pad(se),l:'Seg'}],
       eventMeta: NEXT_EVENT ? NEXT_EVENT.meta : [],
       distances: NEXT_EVENT ? NEXT_EVENT.distances : [],
