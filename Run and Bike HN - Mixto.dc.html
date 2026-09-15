@@ -420,7 +420,7 @@ a:hover{color:#FFD600}
 <a href="{{ waGeneralLink }}" target="_blank" rel="noopener" style="align-self:flex-start;font-size:11.5px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#C1050F;display:inline-flex;align-items:center;gap:9px" style-hover="gap:16px">Escríbenos por WhatsApp <span style="width:22px;height:2px;background:#C1050F;display:inline-block"></span></a>
 </div>
 <div style="display:flex;flex-direction:column;gap:1px;background:rgba(0,0,0,.09);border-top:1px solid rgba(0,0,0,.09);border-bottom:1px solid rgba(0,0,0,.09)">
-<sc-for list="{{ faqs }}" as="f" hint-placeholder-count="7">
+<sc-for list="{{ faqs }}" as="f" hint-placeholder-count="4">
 <div style="background:#F6F4F1">
 <button onClick="{{ f.onClick }}" style="width:100%;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:22px 4px;background:transparent;border:0;cursor:pointer;text-align:left;font-family:Montserrat,sans-serif;color:{{ f.color }};transition:color .2s" style-hover="color:#141414">
 <span style="font-size:15px;font-weight:600;line-height:1.4">{{ f.q }}</span>
@@ -428,6 +428,9 @@ a:hover{color:#FFD600}
 </button>
 <sc-if value="{{ f.open }}" hint-placeholder-val="{{ false }}">
 <p style="margin:0;padding:0 44px 24px 4px;font-size:14px;line-height:1.75;color:#595959;white-space:pre-line;animation:rbRise .3s ease both">{{ f.a }}</p>
+<sc-if value="{{ f.hasLink }}" hint-placeholder-val="{{ false }}">
+<a href="{{ f.link }}" target="_blank" rel="noopener" style="margin:-12px 0 26px 4px;font-size:11.5px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#C1050F;display:inline-flex;align-items:center;gap:9px;transition:gap .2s" style-hover="gap:16px">{{ f.linkLabel }} <span style="width:22px;height:2px;background:#C1050F;display:inline-block"></span></a>
+</sc-if>
 </sc-if>
 </div>
 </sc-for>
@@ -611,11 +614,8 @@ const TESTIMONIALS = [
   {name:'Misael Caballero',meta:'Gracias Convoca Run',disc:'Running',stars:5,quote:'Más que una carrera, fue una experiencia para conocer y disfrutar Gracias, Lempira. Muy bonito ver deporte, turismo y comunidad reunidos en un mismo evento.'}
 ];
 const FAQS = [
-  {q:'¿Cómo me inscribo a un evento?',a:'Las inscripciones se realizan por WhatsApp con el equipo de Run & Bike HN. Te enviamos el formulario, las formas de pago disponibles y la confirmación de tu cupo. No manejamos pagos ni registro dentro de este sitio.'},
-  {q:'¿Qué categorías y distancias hay disponibles?',a:'Cada evento define sus distancias. En running trabajamos rangos de 3K a 21K y en ciclismo de 45K a 100K, con categorías por edad (juvenil, libre, master A y master B) y rama femenina y masculina.'},
-  {q:'¿Dónde está el punto de salida y cómo son las rutas?',a:'El punto de salida se publica una semana antes en Instagram y se envía por WhatsApp junto al mapa de la ruta. Todas las rutas están señalizadas, con banderilleros en cruces y kilometraje marcado.'},
-  {q:'¿Qué equipo necesito llevar?',a:'Para running: calzado deportivo, hidratación personal y el número visible al frente. Para ciclismo: casco obligatorio, bicicleta revisada, luces y kit básico de reparación.'},
-  {q:'¿Qué medidas de seguridad tienen los eventos?',a:'Contamos con ambulancia, personal de primeros auxilios, motorizados de acompañamiento y coordinación previa con la policía municipal de cada zona. En rutas de montaña sumamos vehículo de barrido.'},
+  {q:'¿Cómo me inscribo a un evento?',a:'Las inscripciones se realizan en línea en RunTicket HN. Si tienes dudas con el registro, escríbenos por WhatsApp y te ayudamos.',link:'https://www.runtickethn.com/',linkLabel:'Inscribirme en RunTicket HN'},
+  {q:'¿Qué medidas de seguridad tienen los eventos?',a:'Contamos con ambulancia, personal de primeros auxilios, motorizados de acompañamiento y coordinación previa con la policía municipal de cada zona.'},
   {q:'¿Cuándo y dónde se entregan los kits?',a:'La entrega de kits se hace el día antes del evento en un punto céntrico de la ciudad anfitriona, presentando documento de identidad. También habrá entrega limitada el mismo día, dos horas antes de la salida.'},
   {q:'¿Cuáles son los requisitos de participación?',a:'• Participantes mayores de 16 años.\n• Los menores deberán presentar autorización firmada por su padre, madre o tutor.\n• El número de competencia deberá portarse visible durante todo el recorrido.\n• Para retirar el kit será necesario presentar documento de identidad.\n• Recomendamos mantenerse correctamente hidratado y, para distancias de mayor exigencia, realizar una evaluación médica previa.'}
 ];
@@ -873,6 +873,7 @@ class Component extends DCLogic {
 
       faqs: FAQS.map((f,i) => ({
         q:f.q, a:f.a, open: st.faqOpen===i,
+        hasLink: !!f.link, link: f.link || '', linkLabel: f.linkLabel || '',
         color: st.faqOpen===i ? '#141414' : '#595959',
         iconRot: st.faqOpen===i ? 'rotate(45deg)' : 'none',
         onClick: () => this.setState(s => ({faqOpen: s.faqOpen===i ? -1 : i}))
