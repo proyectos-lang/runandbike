@@ -16,6 +16,9 @@ a:hover{color:#FFD600}
 @keyframes rbFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
 @keyframes rbPulse{0%{box-shadow:0 0 0 0 rgba(227,6,19,.45)}70%{box-shadow:0 0 0 18px rgba(227,6,19,0)}100%{box-shadow:0 0 0 0 rgba(227,6,19,0)}}
 @keyframes rbMarqueeR{from{transform:translateX(-33.3333%)}to{transform:translateX(0)}}
+.rb-conceptos-caja{container-type:inline-size}
+.rb-conceptos{grid-template-columns:1fr 1fr}
+@container (min-width:620px){.rb-conceptos{grid-template-columns:repeat(4,1fr)}}
 @keyframes rbDash{to{stroke-dashoffset:-1000}}
 @keyframes rbRise{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:translateY(0)}}
 @keyframes rbSlide{from{opacity:0;transform:translateX(24px)}to{opacity:1;transform:translateX(0)}}
@@ -120,7 +123,7 @@ a:hover{color:#FFD600}
 <div style="flex:1 1 440px;min-width:0;display:flex;flex-direction:column;gap:26px">
 <div style="display:flex;align-items:center;gap:12px">
 <span style="width:30px;height:3px;background:#E30613"></span>
-<span style="font-size:11px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:#B3210A">El próximo desafío</span>
+<span style="font-size:11px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:#B3210A">Próximo evento</span>
 </div>
 <h2 style="margin:0;font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:clamp(40px,5.6vw,76px);line-height:.92;letter-spacing:.01em;text-transform:uppercase">{{ nextTitle }} <span style="color:#C1050F">{{ nextTitleAccent }}</span></h2>
 <sc-if value="{{ hasNextEvent }}" hint-placeholder-val="{{ true }}">
@@ -145,14 +148,6 @@ a:hover{color:#FFD600}
 </div>
 </div>
 </sc-if>
-<div>
-<div style="font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#B3210A;margin-bottom:10px">Categorías</div>
-<ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:7px">
-<sc-for list="{{ categories }}" as="c" hint-placeholder-count="4">
-<li style="font-size:13.5px;color:#595959;display:flex;gap:9px;align-items:baseline"><span style="width:5px;height:5px;background:#E8A400;flex:none"></span>{{ c }}</li>
-</sc-for>
-</ul>
-</div>
 </div>
 
 </div>
@@ -183,7 +178,7 @@ a:hover{color:#FFD600}
 <article style="background:#181818;border:1px solid rgba(255,255,255,.08);padding:26px;display:flex;flex-direction:column;gap:12px;transition:transform .3s ease,border-color .3s ease" style-hover="transform:translateY(-6px);border-color:rgba(227,6,19,.55)">
 <span style="font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#FF3D00">Convocatoria</span>
 <h3 style="margin:0;font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:26px;line-height:1.05;text-transform:uppercase">Buscamos voluntarios de ruta</h3>
-<p style="margin:0;font-size:13.5px;line-height:1.7;color:#B5B5B5">Necesitamos apoyo en puntos de hidratación, señalización y meta. Los voluntarios reciben camiseta oficial, refrigerio y certificado de participación.</p>
+<p style="margin:0;font-size:13.5px;line-height:1.7;color:#B5B5B5">Viví la carrera desde adentro y ayudanos a crear una gran experiencia para cada participante. Buscamos voluntarios para apoyar en ruta, puntos de hidratación, señalización, salida y meta.</p>
 <a href="{{ waGeneralLink }}" target="_blank" rel="noopener" style="margin-top:6px;font-size:11.5px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#fff;display:inline-flex;align-items:center;gap:9px;transition:gap .2s,color .2s" style-hover="gap:16px;color:#FFD600">Quiero ser voluntario <span style="width:22px;height:2px;background:#E30613;display:inline-block"></span></a>
 </article>
 </div>
@@ -263,7 +258,8 @@ a:hover{color:#FFD600}
 </div>
 <h2 style="margin:0;font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:clamp(40px,5.8vw,80px);line-height:.9;text-transform:uppercase">Más que una<br>competencia</h2>
 <p style="margin:0;max-width:48ch;font-size:16px;line-height:1.78;color:#595959">Cada recorrido es una oportunidad para superar límites, descubrir nuevos caminos y compartir la pasión por el deporte con una comunidad que no deja de avanzar.</p>
-<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1px;background:rgba(0,0,0,.08);border:1px solid rgba(0,0,0,.08)">
+<div class="rb-conceptos-caja">
+<div class="rb-conceptos" style="display:grid;gap:1px;background:rgba(0,0,0,.08);border:1px solid rgba(0,0,0,.08)">
 <sc-for list="{{ concepts }}" as="c" hint-placeholder-count="4">
 <div style="background:#F6F4F1;padding:22px 18px;display:flex;flex-direction:column;gap:10px;transition:background .25s" style-hover="background:#EDEAE4">
 <div style="display:flex;align-items:center;gap:10px">
@@ -274,6 +270,7 @@ a:hover{color:#FFD600}
 <div style="font-size:12.5px;line-height:1.6;color:#595959">{{ c.text }}</div>
 </div>
 </sc-for>
+</div>
 </div>
 </div>
 <div style="display:grid;grid-template-columns:1fr 1fr;grid-auto-rows:minmax(120px,auto);gap:14px">
@@ -816,20 +813,19 @@ class Component extends DCLogic {
 
       heroVideo: this.heroVideo(),
       hasNextEvent: !!NEXT_EVENT,
-      nextName: NEXT_EVENT ? neName : 'Por anunciar',
-      nextShort: NEXT_EVENT ? NEXT_EVENT.short : 'Te avisamos apenas se confirme',
-      nextFooterLine: NEXT_EVENT ? NEXT_EVENT.footerLine : 'Te avisamos apenas confirmemos la fecha.',
+      nextName: NEXT_EVENT ? neName : 'Gatorade Challenge Copán Ruinas',
+      nextShort: NEXT_EVENT ? NEXT_EVENT.short : '5K y 10K · San Pedro Sula',
+      nextFooterLine: NEXT_EVENT ? NEXT_EVENT.footerLine : '5K y 10K · San Pedro Sula',
       nextPoster: NEXT_EVENT ? NEXT_EVENT.poster : '',
       nextBadge: NEXT_EVENT ? NEXT_EVENT.badge : '',
-      nextTitle: NEXT_EVENT ? neTitle : 'Próxima fecha',
-      nextTitleAccent: NEXT_EVENT ? neAccent : 'por anunciar',
+      nextTitle: NEXT_EVENT ? neTitle : 'Gatorade Challenge Copán Ruinas',
+      nextTitleAccent: NEXT_EVENT ? neAccent : '5K y 10K San Pedro Sula',
       nextDescription: NEXT_EVENT ? NEXT_EVENT.description
-        : 'Estamos cerrando el calendario de las próximas carreras. Escribinos por WhatsApp y te avisamos apenas confirmemos fecha, ruta y distancias.',
+        : 'Escribinos por WhatsApp y te enviamos la información de inscripción apenas confirmemos la fecha y la ruta.',
       nextCtaLabel: NEXT_EVENT ? 'Quiero participar' : 'Quiero recibir información',
       countdown: [{v:pad(d),l:'Días'},{v:pad(h),l:'Horas'},{v:pad(mi),l:'Min'},{v:pad(se),l:'Seg'}],
       eventMeta: NEXT_EVENT ? NEXT_EVENT.meta : [],
       distances: NEXT_EVENT ? NEXT_EVENT.distances : [],
-      categories: ['Juvenil 16–19','Libre 20–39','Master A 40–49','Master B 50+','Corredores Legendarios 60+ · inscripción gratis','Rama femenina y masculina'],
 
       eventFilters: mkFilters(['Todos','Running','Ciclismo','Próximos','Finalizados'], eventFilter, l => ({eventFilter:l})),
       visibleEvents: EVENTS.filter(matches).map(ev => Object.assign({}, ev, {
