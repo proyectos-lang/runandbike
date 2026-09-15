@@ -70,7 +70,7 @@ a:hover{color:#FFD600}
 ::selection{background:#E30613;color:#fff}
 @keyframes rbFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
 @keyframes rbPulse{0%{box-shadow:0 0 0 0 rgba(227,6,19,.45)}70%{box-shadow:0 0 0 18px rgba(227,6,19,0)}100%{box-shadow:0 0 0 0 rgba(227,6,19,0)}}
-@keyframes rbMarqueeR{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+@keyframes rbMarqueeR{from{transform:translateX(-33.3333%)}to{transform:translateX(0)}}
 @keyframes rbDash{to{stroke-dashoffset:-1000}}
 @keyframes rbRise{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:translateY(0)}}
 @keyframes rbSlide{from{opacity:0;transform:translateX(24px)}to{opacity:1;transform:translateX(0)}}
@@ -672,10 +672,9 @@ const FAQS = [
   {q:'¿Cuáles son los requisitos de participación?',a:'Ser mayor de 16 años o presentar autorización firmada de un tutor, estar en condiciones físicas adecuadas y aceptar el reglamento del evento. Recomendamos una evaluación médica previa para las distancias largas.'}
 ];
 const SPONSORS = [
-  {name:'Nike',kind:'ropa deportiva',color:'#141414',logo:'assets/sponsor-nike.png'},
-  {name:'Gatorade',kind:'hidratación',color:'#B3210A',logo:'assets/sponsor-gatorade.png'},
-  {name:'Sportia',kind:'tienda deportiva',color:'#141414',logo:'assets/sponsor-sportia.png'},
-  {name:'Quartz',kind:'agua purificada',color:'#2E2585',logo:'assets/sponsor-quartz.png'},
+  {name:'Renovart Platinum',kind:'patrocinador',color:'#1F4E9C',logo:'assets/sponsor-renovart.png'},
+  {name:'Gatorade',kind:'hidratación',color:'#B3210A',logo:'assets/sponsor-gatorade-v2.png'},
+  {name:'Quartz',kind:'agua purificada',color:'#2E2585',logo:'assets/sponsor-quartz-v2.png'},
   {name:'Running Honduras',kind:'aliado',color:'#1B4CA1',logo:'assets/sponsor-running-hn.png'}
 ];
 const SERVICES = [
@@ -934,7 +933,7 @@ class Component extends DCLogic {
       sponsors: SPONSORS,
       marqueeState: st.marqueePaused ? 'paused' : 'running',
       toggleMarquee: () => this.setState(p => ({marqueePaused: !p.marqueePaused})),
-      sponsorsLoop: SPONSORS.concat(SPONSORS).map((sp,i) => Object.assign({}, sp, {
+      sponsorsLoop: SPONSORS.concat(SPONSORS, SPONSORS).map((sp,i) => Object.assign({}, sp, {
         delay: ((i % SPONSORS.length) * 0.14).toFixed(2) + 's',
         noLogo: !sp.logo,
         logo: sp.logo ? React.createElement('img', {src:sp.logo, alt:sp.name, loading:'lazy', style:{height:'86px',width:'auto',maxWidth:'86%',objectFit:'contain',display:'block'}}) : null
