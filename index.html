@@ -281,7 +281,7 @@ a:hover{color:#FFD600}
 <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:24px">
 <sc-for list="{{ visibleEvents }}" as="ev" hint-placeholder-count="6">
 <article style="background:#111111;border:1px solid rgba(255,255,255,.08);overflow:hidden;display:flex;flex-direction:column;transition:transform .3s ease,border-color .3s ease,box-shadow .3s ease" style-hover="transform:translateY(-8px);border-color:rgba(227,6,19,.6);box-shadow:0 22px 44px rgba(0,0,0,.55)">
-<div style="position:relative;aspect-ratio:16/11;background-image:repeating-linear-gradient(118deg,#1e1e1e 0 12px,#161616 12px 24px);display:flex;align-items:center;justify-content:center">
+<div style="position:relative;aspect-ratio:1/1;background-image:repeating-linear-gradient(118deg,#1e1e1e 0 12px,#161616 12px 24px);display:flex;align-items:center;justify-content:center">
 {{ ev.img }}
 <sc-if value="{{ ev.noImg }}" hint-placeholder-val="{{ true }}"><span style="font-family:ui-monospace,Menlo,monospace;font-size:10px;letter-spacing:.2em;color:rgba(255,255,255,.22);padding:0 16px;text-align:center">{{ ev.photo }}</span></sc-if>
 <span style="position:absolute;top:12px;left:12px;padding:6px 11px;font-size:9.5px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;background:{{ ev.badgeBg }};color:{{ ev.badgeColor }}">{{ ev.status }}</span>
@@ -291,8 +291,21 @@ a:hover{color:#FFD600}
 <div style="font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:.14em;color:#FF3D00">{{ ev.date }}</div>
 <h3 style="margin:0;font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:27px;line-height:1.02;letter-spacing:.01em;text-transform:uppercase">{{ ev.name }}</h3>
 <div style="font-size:13px;color:#B5B5B5">{{ ev.place }}</div>
+<sc-if value="{{ ev.hasDetails }}" hint-placeholder-val="{{ true }}">
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(118px,1fr));gap:1px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.08)">
+<sc-for list="{{ ev.details }}" as="m" hint-placeholder-count="2">
+<div style="background:#111111;padding:11px 13px">
+<div style="font-size:9px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#7C7C7C">{{ m.k }}</div>
+<div style="margin-top:5px;font-size:13px;font-weight:600;color:#fff">{{ m.v }}</div>
+</div>
+</sc-for>
+</div>
+</sc-if>
+<sc-for list="{{ ev.notes }}" as="nota" hint-placeholder-count="1">
+<p style="margin:0;padding:10px 13px;background:#181818;border-left:3px solid #FFD600;font-size:11.5px;line-height:1.62;color:#B5B5B5">{{ nota }}</p>
+</sc-for>
 <div style="font-size:12px;letter-spacing:.05em;color:#fff;padding-top:4px;border-top:1px solid rgba(255,255,255,.07)">{{ ev.dist }}</div>
-<a href="{{ waEventLink }}" target="_blank" rel="noopener" style="margin-top:auto;padding-top:8px;font-size:11.5px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#fff;display:inline-flex;align-items:center;gap:9px;transition:gap .2s,color .2s" style-hover="gap:16px;color:#FFD600">Ver evento <span style="width:22px;height:2px;background:#E30613;display:inline-block"></span></a>
+<a href="{{ ev.wa }}" target="_blank" rel="noopener" style="margin-top:auto;padding-top:8px;font-size:11.5px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#fff;display:inline-flex;align-items:center;gap:9px;transition:gap .2s,color .2s" style-hover="gap:16px;color:#FFD600">Ver evento <span style="width:22px;height:2px;background:#E30613;display:inline-block"></span></a>
 </div>
 </article>
 </sc-for>
@@ -618,12 +631,28 @@ Autorizo la publicación de mi testimonio y mi nombre en el sitio de Run &amp; B
    photo: texto que se ve mientras no haya imagen
    src:   ruta del afiche (ej. 'assets/afiche-21k.jpeg'); si se pone, reemplaza a photo
 
+   details: pares cortos que salen en el recuadro de la tarjeta. Opcional.
+            details:[{k:'Hora',v:'5:30 a.m.'},{k:'Inscripción',v:'L 300'}]
+   notes:   frases sueltas que salen debajo, una por renglón amarillo. Opcional.
+            notes:['Inscripciones abiertas.']
+
+   El afiche se muestra completo dentro de un marco cuadrado, así que conviene
+   subirlo en formato 1:1 (los de redes ya vienen así).
+
    Los filtros (Running / Ciclismo / Próximos / Finalizados) aparecen solos
    en cuanto haya más de un evento en la lista. */
 const EVENTS = [
-  {name:'Río Grande Run',date:'27 SEP 2026',place:'Parque Central, San Marcos, Ocotepeque',discipline:'Running',dist:'10K · 5K',status:'Próximo',photo:'',src:'assets/afiche-rio-grande-run.jpeg'},
-  {name:'Gatorade Challenge Copán Ruinas',date:'10 OCT 2026',place:'Copán Ruinas, Copán',discipline:'Running',dist:'10K · 5K',status:'Próximo',photo:'',src:'assets/afiche-gatorade-copan.jpeg'},
-  {name:'Corre al Ritmo de la Música',date:'01 NOV 2026',place:'Boulevard Mackey, San Pedro Sula',discipline:'Running',dist:'10K · 5K',status:'Próximo',photo:'',src:'assets/afiche-ritmo-musica.jpeg'}
+  {name:'Río Grande Run',date:'DOM 27 SEP 2026',place:'Parque Central, San Marcos, Ocotepeque',discipline:'Running',dist:'10K · 5K',status:'Próximo',photo:'',src:'assets/afiche-rio-grande-run.jpeg',
+   details:[{k:'Hora de salida',v:'5:30 a.m.'},{k:'Inscripción',v:'L 300'}],
+   notes:['Inscripciones abiertas.','Organizan la Cooperativa de Ahorro y Crédito Río Grande y Run & Bike HN.']},
+
+  {name:'Gatorade Challenge Copán Ruinas',date:'SÁB 10 OCT 2026',place:'Copán Ruinas, Copán',discipline:'Running',dist:'10K · 5K',status:'Próximo',photo:'',src:'assets/afiche-gatorade-copan.jpeg',
+   details:[{k:'Hora de salida',v:'5:00 a.m.'},{k:'Inscripción',v:'L 400'}],
+   notes:['Con tu inscripción apoyas a la Cruz Roja y al Cuerpo de Bomberos de Copán Ruinas.','Inscripción por depósito o transferencia a la cuenta de ahorro Banpaís 210010536469, a nombre de Run & Bike HN S. de R. L. Envía el comprobante por WhatsApp al 8998-4039.']},
+
+  {name:'Corre al Ritmo de la Música',date:'DOM 01 NOV 2026',place:'Boulevard Mackey, San Pedro Sula',discipline:'Running',dist:'10K · 5K',status:'Próximo',photo:'',src:'assets/afiche-ritmo-musica.jpeg',
+   details:[{k:'Hora de salida',v:'5:30 a.m.'}],
+   notes:['Cada kilómetro, un género musical.']}
 ];
 
 /* Evento destacado: alimenta el bloque del hero con la cuenta regresiva, la
@@ -892,9 +921,13 @@ class Component extends DCLogic {
       eventFilters: mkFilters(['Todos','Running','Ciclismo','Próximos','Finalizados'], eventFilter, l => ({eventFilter:l})),
       visibleEvents: EVENTS.filter(matches).map(ev => Object.assign({}, ev, {
         noImg: !ev.src,
-        img: ev.src ? React.createElement('img', {src:ev.src, alt:ev.name, loading:'lazy', style:{position:'absolute',inset:0,width:'100%',height:'100%',objectFit:'cover',display:'block'}}) : null,
+        img: ev.src ? React.createElement('img', {src:ev.src, alt:'Afiche de ' + ev.name, loading:'lazy', style:{position:'absolute',inset:0,width:'100%',height:'100%',objectFit:'contain',display:'block'}}) : null,
         badgeBg: ev.status==='Próximo' ? '#E30613' : 'rgba(8,8,8,.78)',
-        badgeColor: ev.status==='Próximo' ? '#fff' : '#B5B5B5'
+        badgeColor: ev.status==='Próximo' ? '#fff' : '#B5B5B5',
+        details: ev.details || [],
+        hasDetails: !!(ev.details && ev.details.length),
+        notes: ev.notes || [],
+        wa: link('Hola Run & Bike HN, quiero información de ' + ev.name + '. ¿Me envían los detalles de inscripción?')
       })),
       eventNames: EVENTS.map(e => e.name).concat('Otro evento'),
       showEventFilters: EVENTS.length > 1,
