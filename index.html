@@ -400,13 +400,13 @@ a:hover{color:#FFD600}
 <h2 style="margin:0;font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:clamp(38px,5.4vw,72px);line-height:.94;text-transform:uppercase">Lo que se vive en ruta</h2>
 </div>
 <div style="display:flex;flex-wrap:wrap;gap:9px">
-<sc-for list="{{ galFilters }}" as="f" hint-placeholder-count="5">
+<sc-for list="{{ galFilters }}" as="f" hint-placeholder-count="6">
 <button onClick="{{ f.onClick }}" style="padding:10px 16px;border-radius:2px;cursor:pointer;font-family:Montserrat,sans-serif;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;transition:all .22s;background:{{ f.bg }};border:1px solid {{ f.border }};color:{{ f.color }}" style-hover="border-color:#C1050F;color:#141414">{{ f.label }}</button>
 </sc-for>
 </div>
 </div>
 <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));grid-auto-rows:170px;grid-auto-flow:dense;gap:14px">
-<sc-for list="{{ visibleGallery }}" as="g" hint-placeholder-count="9">
+<sc-for list="{{ visibleGallery }}" as="g" hint-placeholder-count="13">
 <button onClick="{{ g.onClick }}" style="grid-column:span {{ g.cs }};grid-row:span {{ g.rs }};position:relative;border:1px solid rgba(0,0,0,.08);cursor:pointer;padding:0;overflow:hidden;background-image:repeating-linear-gradient(118deg,#E7E3DC 0 12px,#F1EEEA 12px 24px);background-color:#F1EEEA;transition:transform .3s ease,border-color .3s ease" style-hover="transform:scale(1.015);border-color:#B3210A">
 {{ g.img }}
 <sc-if value="{{ g.noSrc }}" hint-placeholder-val="{{ true }}"><span style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:ui-monospace,Menlo,monospace;font-size:10px;letter-spacing:.18em;color:rgba(0,0,0,.24);padding:0 14px;text-align:center">{{ g.photo }}</span></sc-if>
@@ -475,7 +475,7 @@ a:hover{color:#FFD600}
 <a href="{{ waGeneralLink }}" target="_blank" rel="noopener" style="align-self:flex-start;font-size:11.5px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#C1050F;display:inline-flex;align-items:center;gap:9px" style-hover="gap:16px">Escríbenos por WhatsApp <span style="width:22px;height:2px;background:#C1050F;display:inline-block"></span></a>
 </div>
 <div style="display:flex;flex-direction:column;gap:1px;background:rgba(0,0,0,.09);border-top:1px solid rgba(0,0,0,.09);border-bottom:1px solid rgba(0,0,0,.09)">
-<sc-for list="{{ faqs }}" as="f" hint-placeholder-count="4">
+<sc-for list="{{ faqs }}" as="f" hint-placeholder-count="3">
 <div style="background:#F6F4F1">
 <button onClick="{{ f.onClick }}" style="width:100%;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:22px 4px;background:transparent;border:0;cursor:pointer;text-align:left;font-family:Montserrat,sans-serif;color:{{ f.color }};transition:color .2s" style-hover="color:#141414">
 <span style="font-size:15px;font-weight:600;line-height:1.4">{{ f.q }}</span>
@@ -652,15 +652,19 @@ const EVENTS = [
 */
 const NEXT_EVENT = null;
 const GALLERY = [
-  {title:'Medallas del 10K',event:'Challenge Utila',photo:'',src:'assets/galeria-01.jpeg',cs:2,rs:2},
-  {title:'Arco de meta',event:'Challenge Utila',photo:'',src:'assets/galeria-03.jpeg',cs:1,rs:1},
-  {title:'Atardecer en la playa',event:'Challenge Utila',photo:'',src:'assets/galeria-02.jpeg',cs:1,rs:1},
-  {title:'Club Air Runners HN',event:'Challenge Utila',photo:'',src:'assets/galeria-04.jpeg',cs:2,rs:1},
-  {title:'Jaguares Running',event:'Challenge Utila',photo:'',src:'assets/galeria-05.jpeg',cs:1,rs:1},
-  {title:'Contra el reloj',event:'Summer TRI',photo:'',src:'assets/galeria-06.jpeg',cs:1,rs:2},
-  {title:'Maya Runners en meta',event:'Maya Runners',photo:'',src:'assets/galeria-07.jpeg',cs:2,rs:1},
-  {title:'Brindis post carrera',event:'Jaguares Running',photo:'',src:'assets/galeria-08.jpeg',cs:1,rs:1},
-  {title:'Media maratón 21K',event:'Jaguares Running',photo:'',src:'assets/galeria-09.jpeg',cs:1,rs:1}
+  {title:'Foto de familia en la salida',event:'21K La Lima',photo:'',src:'assets/galeria-v2-01.jpeg',cs:2,rs:2},
+  {title:'Calentamiento antes de la salida',event:'21K La Lima',photo:'',src:'assets/galeria-v2-02.jpeg',cs:2,rs:1},
+  {title:'Cruzando la meta',event:'21K La Lima',photo:'',src:'assets/galeria-v2-03.jpeg',cs:1,rs:1},
+  {title:'Amigos en la zona de meta',event:'21K La Lima',photo:'',src:'assets/galeria-v2-04.jpeg',cs:1,rs:1},
+  {title:'Salida del 21K',event:'21K Renovart Platinum',photo:'',src:'assets/galeria-v2-05.jpeg',cs:2,rs:1},
+  {title:'Kilómetro a kilómetro',event:'21K Renovart Platinum',photo:'',src:'assets/galeria-v2-06.jpeg',cs:1,rs:2},
+  {title:'Arranque nocturno',event:'Love & Friends Run',photo:'',src:'assets/galeria-v2-07.jpeg',cs:2,rs:1},
+  {title:'Calentamiento en el parque',event:'Love & Friends Run',photo:'',src:'assets/galeria-v2-08.jpeg',cs:1,rs:1},
+  {title:'En ruta con amigos',event:'Love & Friends Run',photo:'',src:'assets/galeria-v2-09.jpeg',cs:1,rs:2},
+  {title:'Arenga antes de la salida',event:'Run Puerto Cortés',photo:'',src:'assets/galeria-v2-10.jpeg',cs:2,rs:1},
+  {title:'Primeros metros',event:'Run Puerto Cortés',photo:'',src:'assets/galeria-v2-11.jpeg',cs:1,rs:1},
+  {title:'Corriendo junto al mar',event:'Tela Run',photo:'',src:'assets/galeria-v2-12.jpeg',cs:2,rs:1},
+  {title:'Entrega de camisetas',event:'Tela Run',photo:'',src:'assets/galeria-v2-13.jpeg',cs:1,rs:1}
 ];
 const TESTIMONIALS = [
   {name:'Jose Zaldivar',meta:'21K Renovart Platinum',disc:'Running',stars:5,quote:'Una carrera muy bien organizada, excelente seguridad, hidratación y señalización.'},
@@ -671,8 +675,7 @@ const TESTIMONIALS = [
 const FAQS = [
   {q:'¿Cómo me inscribo a un evento?',a:'Las inscripciones se realizan en línea en RunTicket HN. Si tienes dudas con el registro, escríbenos por WhatsApp y te ayudamos.',link:'https://www.runtickethn.com/',linkLabel:'Inscribirme en RunTicket HN'},
   {q:'¿Qué medidas de seguridad tienen los eventos?',a:'Contamos con ambulancia, personal de primeros auxilios, motorizados de acompañamiento y coordinación previa con la policía municipal de cada zona.'},
-  {q:'¿Cuándo y dónde se entregan los kits?',a:'La entrega de kits se hace el día antes del evento en un punto céntrico de la ciudad anfitriona, presentando documento de identidad.'},
-  {q:'¿Cuáles son los requisitos de participación?',a:'• Participantes mayores de 16 años.\n• Los menores deberán presentar autorización firmada por su padre, madre o tutor.\n• El número de competencia deberá portarse visible durante todo el recorrido.\n• Para retirar el kit será necesario presentar documento de identidad.\n• Recomendamos mantenerse correctamente hidratado y, para distancias de mayor exigencia, realizar una evaluación médica previa.'}
+  {q:'¿Cuándo y dónde se entregan los kits?',a:'La entrega de kits se hace el día antes del evento en un punto céntrico de la ciudad anfitriona, presentando documento de identidad.'}
 ];
 const SPONSORS = [
   {name:'Renovart Platinum',kind:'patrocinador',color:'#1F4E9C',logo:'assets/sponsor-renovart.png'},
@@ -907,7 +910,7 @@ class Component extends DCLogic {
       statsRef: this.statsRef,
       stats: STATS.map((s,i) => ({label:s.label, value: st.statVals[i].toLocaleString('es-HN') + s.suffix})),
 
-      galFilters: ['Todos','Challenge Utila','Summer TRI','Maya Runners','Jaguares Running'].map(label => ({label, bg: label===galFilter ? 'linear-gradient(100deg,#E30613,#FF3D00)' : 'transparent', border: label===galFilter ? 'transparent' : 'rgba(0,0,0,.18)', color: label===galFilter ? '#fff' : '#595959', onClick: () => this.setState({galFilter:label})})),
+      galFilters: ['Todos', ...new Set(GALLERY.map(g => g.event))].map(label => ({label, bg: label===galFilter ? 'linear-gradient(100deg,#E30613,#FF3D00)' : 'transparent', border: label===galFilter ? 'transparent' : 'rgba(0,0,0,.18)', color: label===galFilter ? '#fff' : '#595959', onClick: () => this.setState({galFilter:label})})),
       visibleGallery: GALLERY.filter(g => galFilter==='Todos' || g.event===galFilter)
         .map(g => Object.assign({}, g, {noSrc: !g.src, img: g.src ? React.createElement('img', {src:g.src, alt:g.title, loading:'lazy', style:{position:'absolute',inset:0,width:'100%',height:'100%',objectFit:'cover',display:'block'}}) : null, onClick: () => this.setState({lightbox:g})})),
       lightbox: st.lightbox ? Object.assign({}, st.lightbox, {noSrc: !st.lightbox.src, img: st.lightbox.src ? React.createElement('img', {src:st.lightbox.src, alt:st.lightbox.title, style:{width:'100%',height:'100%',objectFit:'contain',display:'block'}}) : null}) : null,

@@ -32,7 +32,7 @@
  *         va en naranja. Conviene dejarlo corto: entran unos 20 caracteres
  *         por renglón antes de que se salga.
  *
- *     node portada-social.mjs --foto assets/galeria-07.jpeg
+ *     node portada-social.mjs --foto assets/galeria-v2-12.jpeg
  *         Usa otra foto de fondo.
  *
  * PARA PUBLICARLA, después de revisar og-cover-nueva.jpg:
@@ -70,7 +70,7 @@ const opcion = (nombre, porDefecto = null) => {
 
 const SIN_TITULAR = argv.includes('--sin-titular');
 const TITULAR = opcion('--titular', 'ORGANIZADORA DE|EVENTOS DEPORTIVOS');
-const FOTO = opcion('--foto', 'assets/galeria-01.jpeg');
+const FOTO = opcion('--foto', 'assets/galeria-v2-01.jpeg');
 const SALIDA = opcion('--out', 'og-cover-nueva.jpg');
 
 const W = 1200, H = 630;   // medida que piden Open Graph y Twitter
