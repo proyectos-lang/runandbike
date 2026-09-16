@@ -151,6 +151,63 @@ a:hover{color:#FFD600}
 </div>
 </section>
 
+<section id="eventos" style="clip-path:polygon(0 2.4vw,100% 0,100% 100%,0 100%);margin-top:-2.4vw;scroll-margin-top:80px;background:#080808;padding:clamp(70px,9vw,120px) clamp(18px,4vw,56px)">
+<div style="max-width:1320px;margin:0 auto">
+<div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:34px">
+<div>
+<div style="display:flex;align-items:center;gap:12px;margin-bottom:14px">
+<span style="width:30px;height:3px;background:#E30613"></span>
+<span style="font-size:11px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:#FF3D00">Calendario</span>
+</div>
+<h2 style="margin:0;font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:clamp(38px,5.4vw,72px);line-height:.94;text-transform:uppercase">Todos los eventos</h2>
+</div>
+<p style="margin:0;max-width:34ch;font-size:14px;line-height:1.7;color:#B5B5B5">Nuestro calendario de carreras. Cada fecha nueva se publica aquí apenas queda confirmada.</p>
+</div>
+<sc-if value="{{ showEventFilters }}" hint-placeholder-val="{{ true }}">
+<div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:32px">
+<sc-for list="{{ eventFilters }}" as="f" hint-placeholder-count="5">
+<button onClick="{{ f.onClick }}" style="padding:11px 20px;border-radius:2px;cursor:pointer;font-family:Montserrat,sans-serif;font-size:11.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;transition:all .22s;background:{{ f.bg }};border:1px solid {{ f.border }};color:{{ f.color }}" style-hover="border-color:#FF3D00;color:#fff">{{ f.label }}</button>
+</sc-for>
+</div>
+</sc-if>
+<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:24px">
+<sc-for list="{{ visibleEvents }}" as="ev" hint-placeholder-count="6">
+<article style="background:#111111;border:1px solid rgba(255,255,255,.08);overflow:hidden;display:flex;flex-direction:column;transition:transform .3s ease,border-color .3s ease,box-shadow .3s ease" style-hover="transform:translateY(-8px);border-color:rgba(227,6,19,.6);box-shadow:0 22px 44px rgba(0,0,0,.55)">
+<div style="position:relative;aspect-ratio:1/1;background-image:repeating-linear-gradient(118deg,#1e1e1e 0 12px,#161616 12px 24px);display:flex;align-items:center;justify-content:center">
+{{ ev.img }}
+<sc-if value="{{ ev.noImg }}" hint-placeholder-val="{{ true }}"><span style="font-family:ui-monospace,Menlo,monospace;font-size:10px;letter-spacing:.2em;color:rgba(255,255,255,.22);padding:0 16px;text-align:center">{{ ev.photo }}</span></sc-if>
+<span style="position:absolute;top:12px;left:12px;padding:6px 11px;font-size:9.5px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;background:{{ ev.badgeBg }};color:{{ ev.badgeColor }}">{{ ev.status }}</span>
+<span style="position:absolute;top:12px;right:12px;padding:6px 11px;font-size:9.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;background:rgba(8,8,8,.72);color:#fff;border:1px solid rgba(255,255,255,.16)">{{ ev.discipline }}</span>
+</div>
+<div style="padding:22px;display:flex;flex-direction:column;gap:13px;flex:1">
+<div style="font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:.14em;color:#FF3D00">{{ ev.date }}</div>
+<h3 style="margin:0;font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:27px;line-height:1.02;letter-spacing:.01em;text-transform:uppercase">{{ ev.name }}</h3>
+<div style="font-size:13px;color:#B5B5B5">{{ ev.place }}</div>
+<sc-if value="{{ ev.hasDetails }}" hint-placeholder-val="{{ true }}">
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(118px,1fr));gap:1px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.08)">
+<sc-for list="{{ ev.details }}" as="m" hint-placeholder-count="2">
+<div style="background:#111111;padding:11px 13px">
+<div style="font-size:9px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#7C7C7C">{{ m.k }}</div>
+<div style="margin-top:5px;font-size:13px;font-weight:600;color:#fff">{{ m.v }}</div>
+</div>
+</sc-for>
+</div>
+</sc-if>
+<sc-for list="{{ ev.notes }}" as="nota" hint-placeholder-count="1">
+<p style="margin:0;padding:10px 13px;background:#181818;border-left:3px solid #FFD600;font-size:11.5px;line-height:1.62;color:#B5B5B5">{{ nota }}</p>
+</sc-for>
+<div style="font-size:12px;letter-spacing:.05em;color:#fff;padding-top:4px;border-top:1px solid rgba(255,255,255,.07)">{{ ev.dist }}</div>
+<a href="{{ ev.wa }}" target="_blank" rel="noopener" style="margin-top:auto;padding-top:8px;font-size:11.5px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#fff;display:inline-flex;align-items:center;gap:9px;transition:gap .2s,color .2s" style-hover="gap:16px;color:#FFD600">Ver evento <span style="width:22px;height:2px;background:#E30613;display:inline-block"></span></a>
+</div>
+</article>
+</sc-for>
+</div>
+<sc-if value="{{ noEvents }}" hint-placeholder-val="{{ false }}">
+<p style="margin:0;padding:46px 0;font-size:14px;line-height:1.7;color:#B5B5B5">No hay eventos en esta categoría por ahora. Escríbenos por WhatsApp y te avisamos apenas confirmemos la próxima fecha.</p>
+</sc-if>
+</div>
+</section>
+
 <section id="proximo" style="clip-path:polygon(0 0,100% 2.4vw,100% 100%,0 100%);margin-top:-2.4vw;color:#141414;scroll-margin-top:80px;background:#F6F4F1;padding:clamp(70px,9vw,120px) clamp(18px,4vw,56px)">
 <div style="max-width:1320px;margin:0 auto;display:flex;flex-wrap:wrap;gap:clamp(28px,4vw,60px);align-items:flex-start">
 <div style="flex:1 1 300px;max-width:400px;display:flex;flex-direction:column;gap:20px">
@@ -258,63 +315,6 @@ a:hover{color:#FFD600}
 </sc-for>
 </div>
 </div>
-</div>
-</section>
-
-<section id="eventos" style="clip-path:polygon(0 2.4vw,100% 0,100% 100%,0 100%);margin-top:-2.4vw;scroll-margin-top:80px;background:#080808;padding:clamp(70px,9vw,120px) clamp(18px,4vw,56px)">
-<div style="max-width:1320px;margin:0 auto">
-<div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:34px">
-<div>
-<div style="display:flex;align-items:center;gap:12px;margin-bottom:14px">
-<span style="width:30px;height:3px;background:#E30613"></span>
-<span style="font-size:11px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:#FF3D00">Calendario</span>
-</div>
-<h2 style="margin:0;font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:clamp(38px,5.4vw,72px);line-height:.94;text-transform:uppercase">Todos los eventos</h2>
-</div>
-<p style="margin:0;max-width:34ch;font-size:14px;line-height:1.7;color:#B5B5B5">Nuestro calendario de carreras. Cada fecha nueva se publica aquí apenas queda confirmada.</p>
-</div>
-<sc-if value="{{ showEventFilters }}" hint-placeholder-val="{{ true }}">
-<div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:32px">
-<sc-for list="{{ eventFilters }}" as="f" hint-placeholder-count="5">
-<button onClick="{{ f.onClick }}" style="padding:11px 20px;border-radius:2px;cursor:pointer;font-family:Montserrat,sans-serif;font-size:11.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;transition:all .22s;background:{{ f.bg }};border:1px solid {{ f.border }};color:{{ f.color }}" style-hover="border-color:#FF3D00;color:#fff">{{ f.label }}</button>
-</sc-for>
-</div>
-</sc-if>
-<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:24px">
-<sc-for list="{{ visibleEvents }}" as="ev" hint-placeholder-count="6">
-<article style="background:#111111;border:1px solid rgba(255,255,255,.08);overflow:hidden;display:flex;flex-direction:column;transition:transform .3s ease,border-color .3s ease,box-shadow .3s ease" style-hover="transform:translateY(-8px);border-color:rgba(227,6,19,.6);box-shadow:0 22px 44px rgba(0,0,0,.55)">
-<div style="position:relative;aspect-ratio:1/1;background-image:repeating-linear-gradient(118deg,#1e1e1e 0 12px,#161616 12px 24px);display:flex;align-items:center;justify-content:center">
-{{ ev.img }}
-<sc-if value="{{ ev.noImg }}" hint-placeholder-val="{{ true }}"><span style="font-family:ui-monospace,Menlo,monospace;font-size:10px;letter-spacing:.2em;color:rgba(255,255,255,.22);padding:0 16px;text-align:center">{{ ev.photo }}</span></sc-if>
-<span style="position:absolute;top:12px;left:12px;padding:6px 11px;font-size:9.5px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;background:{{ ev.badgeBg }};color:{{ ev.badgeColor }}">{{ ev.status }}</span>
-<span style="position:absolute;top:12px;right:12px;padding:6px 11px;font-size:9.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;background:rgba(8,8,8,.72);color:#fff;border:1px solid rgba(255,255,255,.16)">{{ ev.discipline }}</span>
-</div>
-<div style="padding:22px;display:flex;flex-direction:column;gap:13px;flex:1">
-<div style="font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:.14em;color:#FF3D00">{{ ev.date }}</div>
-<h3 style="margin:0;font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:27px;line-height:1.02;letter-spacing:.01em;text-transform:uppercase">{{ ev.name }}</h3>
-<div style="font-size:13px;color:#B5B5B5">{{ ev.place }}</div>
-<sc-if value="{{ ev.hasDetails }}" hint-placeholder-val="{{ true }}">
-<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(118px,1fr));gap:1px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.08)">
-<sc-for list="{{ ev.details }}" as="m" hint-placeholder-count="2">
-<div style="background:#111111;padding:11px 13px">
-<div style="font-size:9px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#7C7C7C">{{ m.k }}</div>
-<div style="margin-top:5px;font-size:13px;font-weight:600;color:#fff">{{ m.v }}</div>
-</div>
-</sc-for>
-</div>
-</sc-if>
-<sc-for list="{{ ev.notes }}" as="nota" hint-placeholder-count="1">
-<p style="margin:0;padding:10px 13px;background:#181818;border-left:3px solid #FFD600;font-size:11.5px;line-height:1.62;color:#B5B5B5">{{ nota }}</p>
-</sc-for>
-<div style="font-size:12px;letter-spacing:.05em;color:#fff;padding-top:4px;border-top:1px solid rgba(255,255,255,.07)">{{ ev.dist }}</div>
-<a href="{{ ev.wa }}" target="_blank" rel="noopener" style="margin-top:auto;padding-top:8px;font-size:11.5px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#fff;display:inline-flex;align-items:center;gap:9px;transition:gap .2s,color .2s" style-hover="gap:16px;color:#FFD600">Ver evento <span style="width:22px;height:2px;background:#E30613;display:inline-block"></span></a>
-</div>
-</article>
-</sc-for>
-</div>
-<sc-if value="{{ noEvents }}" hint-placeholder-val="{{ false }}">
-<p style="margin:0;padding:46px 0;font-size:14px;line-height:1.7;color:#B5B5B5">No hay eventos en esta categoría por ahora. Escríbenos por WhatsApp y te avisamos apenas confirmemos la próxima fecha.</p>
-</sc-if>
 </div>
 </section>
 
