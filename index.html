@@ -89,7 +89,7 @@ a:hover{color:#FFD600}
 <sc-for list="{{ navLinks }}" as="link" hint-placeholder-count="7">
 <a href="{{ link.href }}" style="font-size:11.5px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:#B5B5B5;padding:6px 0;border-bottom:2px solid transparent;transition:color .2s,border-color .2s" style-hover="color:#fff;border-color:#E30613">{{ link.label }}</a>
 </sc-for>
-<a href="#proximo" style="margin-left:6px;padding:13px 22px;border-radius:2px;background:linear-gradient(100deg,#E30613,#FF3D00);color:#fff;font-size:11.5px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;transition:transform .2s,box-shadow .2s,filter .2s" style-hover="transform:translateY(-2px);box-shadow:0 10px 26px rgba(227,6,19,.4);color:#fff" style-active="transform:translateY(0)">Próximo evento</a>
+<a href="{{ signupUrl }}" target="_blank" rel="noopener" style="margin-left:6px;padding:13px 22px;border-radius:2px;background:linear-gradient(100deg,#E30613,#FF3D00);color:#fff;font-size:11.5px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;transition:transform .2s,box-shadow .2s,filter .2s" style-hover="transform:translateY(-2px);box-shadow:0 10px 26px rgba(227,6,19,.4);color:#fff" style-active="transform:translateY(0)">Inscribirme</a>
 </nav>
 </sc-if>
 <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
@@ -105,7 +105,7 @@ a:hover{color:#FFD600}
 <sc-for list="{{ navLinks }}" as="link" hint-placeholder-count="7">
 <a href="{{ link.href }}" onClick="{{ closeMenu }}" style="padding:14px 0;font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:.04em;color:#fff;border-bottom:1px solid rgba(255,255,255,.06)" style-hover="color:#FF3D00">{{ link.label }}</a>
 </sc-for>
-<a href="#proximo" onClick="{{ closeMenu }}" style="margin-top:16px;text-align:center;padding:16px;border-radius:2px;background:linear-gradient(100deg,#E30613,#FF3D00);color:#fff;font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase">Próximo evento</a>
+<a href="{{ signupUrl }}" target="_blank" rel="noopener" onClick="{{ closeMenu }}" style="margin-top:16px;text-align:center;padding:16px;border-radius:2px;background:linear-gradient(100deg,#E30613,#FF3D00);color:#fff;font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase">Inscribirme</a>
 </nav>
 </sc-if>
 </header>
@@ -129,6 +129,7 @@ a:hover{color:#FFD600}
 <a href="#eventos" style="padding:17px 30px;border-radius:2px;background:linear-gradient(100deg,#E30613,#FF3D00);color:#fff;font-size:12.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;transition:transform .2s,box-shadow .2s" style-hover="transform:translateY(-3px);box-shadow:0 14px 34px rgba(227,6,19,.45);color:#fff" style-active="transform:translateY(-1px)">Conoce nuestros eventos</a>
 <a href="#experiencia" style="padding:17px 30px;border-radius:2px;border:1px solid rgba(255,255,255,.3);color:#fff;font-size:12.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;transition:border-color .2s,background .2s,color .2s" style-hover="border-color:#FFD600;color:#FFD600;background:rgba(255,214,0,.06)">Ver la experiencia</a>
 </div>
+<sc-if value="{{ hasNextEvent }}" hint-placeholder-val="{{ true }}">
 <div style="margin-top:8px;box-sizing:border-box;display:flex;flex-wrap:wrap;align-items:center;gap:clamp(16px,3vw,40px);padding:22px clamp(18px,2.4vw,28px);background:rgba(17,17,17,.78);border:1px solid rgba(255,255,255,.1);border-left:3px solid #E30613;backdrop-filter:blur(10px);animation:rbRise .8s .32s ease both">
 <div style="display:flex;flex-direction:column;gap:6px;min-width:190px">
 <span style="font-size:10px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:#FF3D00">Próximo evento</span>
@@ -146,6 +147,7 @@ a:hover{color:#FFD600}
 </div>
 </sc-if>
 </div>
+</sc-if>
 </div>
 </section>
 
@@ -171,14 +173,14 @@ a:hover{color:#FFD600}
 </ul>
 </div>
 <div style="display:flex;flex-wrap:wrap;gap:13px">
-<a href="{{ waEventLink }}" target="_blank" rel="noopener" style="padding:17px 30px;border-radius:2px;background:linear-gradient(100deg,#E30613,#FF3D00);color:#fff;font-size:12.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;transition:transform .2s,box-shadow .2s" style-hover="transform:translateY(-3px);box-shadow:0 14px 34px rgba(227,6,19,.45);color:#fff">{{ nextCtaLabel }}</a>
-<a href="#eventos" style="padding:17px 30px;border-radius:2px;border:1px solid rgba(0,0,0,.28);color:#141414;font-size:12.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;transition:border-color .2s,color .2s" style-hover="border-color:#C1050F;color:#C1050F">Ver próximos eventos</a>
+<a href="{{ signupUrl }}" target="_blank" rel="noopener" style="padding:17px 30px;border-radius:2px;background:linear-gradient(100deg,#E30613,#FF3D00);color:#fff;font-size:12.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;transition:transform .2s,box-shadow .2s" style-hover="transform:translateY(-3px);box-shadow:0 14px 34px rgba(227,6,19,.45);color:#fff">{{ nextCtaLabel }}</a>
+<a href="{{ waEventLink }}" target="_blank" rel="noopener" style="padding:17px 30px;border-radius:2px;border:1px solid rgba(0,0,0,.28);color:#141414;font-size:12.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;transition:border-color .2s,color .2s" style-hover="border-color:#C1050F;color:#C1050F">Dudas por WhatsApp</a>
 </div>
 </div>
 <div style="flex:1 1 440px;min-width:0;display:flex;flex-direction:column;gap:26px">
 <div style="display:flex;align-items:center;gap:12px">
 <span style="width:30px;height:3px;background:#E30613"></span>
-<span style="font-size:11px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:#B3210A">Próximo evento</span>
+<span style="font-size:11px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:#B3210A">{{ nextEyebrow }}</span>
 </div>
 <h2 style="margin:0;font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:clamp(40px,5.6vw,76px);line-height:.92;letter-spacing:.01em;text-transform:uppercase">{{ nextTitle }} <span style="color:#C1050F">{{ nextTitleAccent }}</span></h2>
 <sc-if value="{{ hasNextEvent }}" hint-placeholder-val="{{ true }}">
@@ -540,10 +542,10 @@ a:hover{color:#FFD600}
 </sc-for>
 </div>
 <div style="display:flex;flex-direction:column;gap:14px">
-<span style="font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#FF3D00">Próximo evento</span>
+<span style="font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#FF3D00">{{ nextEyebrow }}</span>
 <strong style="font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:24px;letter-spacing:.02em">{{ nextName }}</strong>
 <span style="font-size:13px;color:#B5B5B5">{{ nextFooterLine }}</span>
-<a href="{{ waEventLink }}" target="_blank" rel="noopener" style="align-self:flex-start;padding:13px 20px;background:linear-gradient(100deg,#E30613,#FF3D00);color:#fff;font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase" style-hover="color:#fff">{{ nextCtaLabel }}</a>
+<a href="{{ signupUrl }}" target="_blank" rel="noopener" style="align-self:flex-start;padding:13px 20px;background:linear-gradient(100deg,#E30613,#FF3D00);color:#fff;font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase" style-hover="color:#fff">{{ nextCtaLabel }}</a>
 </div>
 </div>
 <div style="max-width:1320px;margin:44px auto 0;padding-top:22px;border-top:1px solid rgba(255,255,255,.07);display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;font-size:11.5px;color:#B5B5B5">
@@ -622,6 +624,11 @@ Autorizo la publicación de mi testimonio y mi nombre en el sitio de Run &amp; B
 
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;whatsappNumber&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;50489984039&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Contacto&quot;}}">
+/* Página de inscripciones. Alimenta el botón "Inscribirme" del encabezado,
+   el del menú móvil, el de la sección de inscripciones y el del pie.
+   Si algún día cambian de plataforma, se cambia solo esta línea. */
+const SIGNUP_URL = 'https://www.runtickethn.com/';
+
 /* Eventos de la sección "Todos los eventos".
    Para agregar uno nuevo, copiá esta línea dentro de la lista y cambiale los datos:
 
@@ -658,9 +665,14 @@ const EVENTS = [
 /* Evento destacado: alimenta el bloque del hero con la cuenta regresiva, la
    sección "El próximo desafío" y la columna del pie de página.
 
-   Mientras esté en null, esos tres bloques quedan en modo "por anunciar": se
-   ocultan el afiche, la cuenta regresiva, la ficha de datos y las distancias,
-   y el resto invita a escribir por WhatsApp.
+   Mientras esté en null no hay evento destacado: la banda del hero y la cuenta
+   regresiva no aparecen, y la sección del medio pasa a ser la invitación a
+   inscribirse en RunTicket (ver SIGNUP_URL), conservando los requisitos de
+   participación. El pie hace lo mismo.
+
+   Ojo: el botón principal siempre manda a SIGNUP_URL. Si alguna carrera se
+   inscribe por otra vía (depósito, transferencia), eso va en sus notes dentro
+   de EVENTS, como está el Gatorade Challenge.
 
    Cuando confirmen la próxima carrera, reemplazá el null por un objeto así
    (y agregala también a EVENTS para que salga en el calendario):
@@ -900,20 +912,22 @@ class Component extends DCLogic {
       waGeneralLink: link('Hola Run & Bike HN, quiero información sobre los próximos eventos.'),
       waVolunteerLink: link('Hola Run & Bike HN, quiero ser voluntario en sus eventos. ¿Me envían la información?'),
       waEventLink: link(NEXT_EVENT && NEXT_EVENT.wa ? NEXT_EVENT.wa
-        : 'Hola Run & Bike HN, quiero información del Gatorade Challenge Copán Ruinas.'),
+        : 'Hola Run & Bike HN, tengo una duda con la inscripción. ¿Me ayudan?'),
+      signupUrl: SIGNUP_URL,
 
       heroVideo: this.heroVideo(),
       hasNextEvent: !!NEXT_EVENT,
-      nextName: NEXT_EVENT ? neName : 'Gatorade Challenge Copán Ruinas',
-      nextShort: NEXT_EVENT ? NEXT_EVENT.short : '5K y 10K · San Pedro Sula',
-      nextFooterLine: NEXT_EVENT ? NEXT_EVENT.footerLine : '5K y 10K · San Pedro Sula',
+      nextEyebrow: NEXT_EVENT ? 'Próximo evento' : 'Inscripciones',
+      nextName: NEXT_EVENT ? neName : 'RunTicket HN',
+      nextShort: NEXT_EVENT ? NEXT_EVENT.short : '',
+      nextFooterLine: NEXT_EVENT ? NEXT_EVENT.footerLine : 'Todas nuestras carreras, en línea.',
       nextPoster: NEXT_EVENT ? NEXT_EVENT.poster : '',
       nextBadge: NEXT_EVENT ? NEXT_EVENT.badge : '',
-      nextTitle: NEXT_EVENT ? neTitle : 'Gatorade Challenge Copán Ruinas',
-      nextTitleAccent: NEXT_EVENT ? neAccent : '5K y 10K San Pedro Sula',
+      nextTitle: NEXT_EVENT ? neTitle : 'Inscríbete en línea en',
+      nextTitleAccent: NEXT_EVENT ? neAccent : 'RunTicket HN',
       nextDescription: NEXT_EVENT ? NEXT_EVENT.description
-        : 'Escríbenos por WhatsApp y te enviamos la información de inscripción apenas confirmemos la fecha y la ruta.',
-      nextCtaLabel: NEXT_EVENT ? 'Quiero participar' : 'Quiero recibir información',
+        : 'Todas las inscripciones de nuestras carreras se hacen en línea en RunTicket HN. Si tienes dudas con el registro, escríbenos por WhatsApp y te ayudamos.',
+      nextCtaLabel: 'Inscribirme en RunTicket',
       countdown: [{v:pad(d),l:'Días'},{v:pad(h),l:'Horas'},{v:pad(mi),l:'Min'},{v:pad(se),l:'Seg'}],
       eventMeta: NEXT_EVENT ? NEXT_EVENT.meta : [],
       distances: NEXT_EVENT ? NEXT_EVENT.distances : [],
