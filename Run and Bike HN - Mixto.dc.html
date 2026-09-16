@@ -179,7 +179,7 @@ a:hover{color:#FFD600}
 <span style="font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#FF3D00">Convocatoria</span>
 <h3 style="margin:0;font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:26px;line-height:1.05;text-transform:uppercase">Buscamos voluntarios de ruta</h3>
 <p style="margin:0;font-size:13.5px;line-height:1.7;color:#B5B5B5">Viví la carrera desde adentro y ayudanos a crear una gran experiencia para cada participante. Buscamos voluntarios para apoyar en ruta, puntos de hidratación, señalización, salida y meta.</p>
-<a href="{{ waGeneralLink }}" target="_blank" rel="noopener" style="margin-top:6px;font-size:11.5px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#fff;display:inline-flex;align-items:center;gap:9px;transition:gap .2s,color .2s" style-hover="gap:16px;color:#FFD600">Quiero ser voluntario <span style="width:22px;height:2px;background:#E30613;display:inline-block"></span></a>
+<a href="{{ waVolunteerLink }}" target="_blank" rel="noopener" style="margin-top:6px;font-size:11.5px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#fff;display:inline-flex;align-items:center;gap:9px;transition:gap .2s,color .2s" style-hover="gap:16px;color:#FFD600">Quiero ser voluntario <span style="width:22px;height:2px;background:#E30613;display:inline-block"></span></a>
 </article>
 </div>
 </div>
@@ -811,8 +811,9 @@ class Component extends DCLogic {
         {label:'hola@runbikehn.com',href:'mailto:hola@runbikehn.com'}
       ],
       waGeneralLink: link('Hola Run & Bike HN, quiero información sobre los próximos eventos.'),
+      waVolunteerLink: link('Hola Run & Bike HN, quiero ser voluntario en sus eventos. ¿Me envían la información?'),
       waEventLink: link(NEXT_EVENT && NEXT_EVENT.wa ? NEXT_EVENT.wa
-        : 'Hola Run & Bike HN, quiero que me avisen cuando confirmen la próxima carrera.'),
+        : 'Hola Run & Bike HN, quiero información del Gatorade Challenge Copán Ruinas.'),
 
       heroVideo: this.heroVideo(),
       hasNextEvent: !!NEXT_EVENT,
